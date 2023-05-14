@@ -44,16 +44,7 @@ export default function Navbar() {
                             <Menu.Items className="absolute right-0 z-10 mt-2 text-center w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                 <Menu.Item>
                                     {({ active }) => (
-                                        <a href="./comingsoon" className={classNames(active ? 'bg-gray-200' : '', 'block px-4 py-2 rounded-md text-sm text-gray-700')}>Conta</a>)}
-                                </Menu.Item>
-                                <Menu.Item>
-                                    {({ active }) => (
-                                        <a href="./comingsoon" className={classNames(active ? 'bg-gray-200' : '', 'block px-4 py-2 rounded-md text-sm text-gray-700')}>Configurações</a>)}
-                                </Menu.Item>
-
-                                <Menu.Item>
-                                    {({ active }) => (
-                                    <a href="./comingsoon" className={classNames(active ? 'bg-gray-200' : '', 'block px-4 py-2 rounded-md text-sm text-gray-700')}>Sair</a>)}
+                                        <a href="./comingsoon" className={classNames(active ? 'bg-gray-200' : '', 'block px-4 py-2 rounded-md text-sm text-gray-700')}>Entrar</a>)}
                                 </Menu.Item>
                             </Menu.Items>
                         </Transition>
