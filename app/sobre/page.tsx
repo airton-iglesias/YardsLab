@@ -2,6 +2,19 @@ import React from 'react';
 import Header from "../components/header";
 import Footer from "../components/footer";
 
+export const metadata = {
+    title: 'YardsLab - Sobre',
+    icons: {
+      icon: '/icons/favicon.png',
+      shortcut: '/icons/favicon.png',
+      apple: '/icons/favicon.png',
+      other: {
+        rel: 'apple-touch-icon-precomposed',
+        url: '/icons/favicon.png',
+      },
+    },
+  };
+
 export default function Page() {
     return (
         <>

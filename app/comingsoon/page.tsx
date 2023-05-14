@@ -1,6 +1,21 @@
 import React from 'react';
 import Navbar from "../components/header";
 
+
+export const metadata = {
+    title: 'YardsLab - Coming Soon',
+    icons: {
+      icon: '/icons/favicon.png',
+      shortcut: '/icons/favicon.png',
+      apple: '/icons/favicon.png',
+      other: {
+        rel: 'apple-touch-icon-precomposed',
+        url: '/icons/favicon.png',
+      },
+    },
+  };
+
+
 export default function Page() {
     return (
         <>
