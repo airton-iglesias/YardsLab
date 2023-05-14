@@ -24,7 +24,6 @@ export default function Page() {
           <link rel="shortcut icon" href="/favicon.png" />
         </Head>
 
-
         <div className="bg-gradient-to-r from-slate-900 to-slate-700">
           <Header/>
           <section>

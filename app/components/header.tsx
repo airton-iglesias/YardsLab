@@ -2,7 +2,13 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import Head from 'next/head';
+
+const navigation = [
+    { name: 'Início', href: '/'},
+    { name: 'Sobre', href: '/sobre'},
+    { name: 'Projetos', href: '/projetos'},
+]
+
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -27,7 +33,7 @@ export default function Header() {
                                 <a href="./sobre" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Sobre</a>
                             </li>
                             <li>
-                                <a href="./comingsoon" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Projetos</a>
+                                <a href="./projetos" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Projetos</a>
                             </li>
                         </ul>
                     </div>
@@ -56,11 +62,18 @@ export default function Header() {
                                         {open ? (<XMarkIcon className="block h-6 w-6" aria-hidden="true" />) : (<Bars3Icon className="block h-6 w-6" aria-hidden="true" />)}
                                     </Disclosure.Button>
                                 
-                                    <Disclosure.Panel className="absolute left-0 mt-4 w-full rounded-md text-center bg-white text-gray-500">
+                                    <Disclosure.Panel className="absolute left-0 mt-4 w-full h-screen rounded-md text-center bg-white text-gray-500 ">
                                         <ul>
-                                            <li><Disclosure.Button className="w-full px-4 rounded-md py-4 text-sm hover:bg-gray-200 text-gray-700">Início</Disclosure.Button></li>
-                                            <li><Disclosure.Button className="w-full px-4 rounded-md py-4 text-sm hover:bg-gray-200 text-gray-700">Sobre</Disclosure.Button></li>
-                                            <li><Disclosure.Button className="w-full px-4 rounded-md py-4 text-sm hover:bg-gray-200 text-gray-700">Projetos</Disclosure.Button></li>
+                                           
+                                            <li>
+                                                <a href="/" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2 mt-5" aria-current="page">Início</a>
+                                            </li>
+                                            <li className="">
+                                                <a href="./sobre" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2">Sobre</a>
+                                            </li>
+                                            <li>
+                                                <a href="./projetos" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white">Projetos</a>
+                                            </li>
                                         </ul>
                                     </Disclosure.Panel>
                                 </>
