@@ -111,7 +111,6 @@ export default function Page() {
                     </div>
                     <div className="ml-3 flex gap-2">
                       <div className="rounded-md px-2 py-1 text-xs font-semibold bg-yellow-400 text-yellow-900">TypeScript</div>
-                      <div className="rounded-md px-2 py-1 text-xs font-semibold bg-blue-400 text-blue-900">React.js</div>
                       <div className="rounded-md px-2 py-1 text-xs font-semibold bg-violet-400 text-violet-900">Next.js</div>
                       <div className="rounded-md px-2 py-1 text-xs font-semibold bg-emerald-400 text-emerald-900">Node.js</div>
                       <div className="rounded-md px-2 py-1 text-xs font-semibold bg-sky-400 text-sky-900">Tailwind.css</div>
