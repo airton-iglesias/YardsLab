@@ -107,7 +107,7 @@ export default function Page() {
                     <span className="bg-gradient-to-br from-sky-500 to-cyan-400 bg-clip-text text-transparent"> Recentes</span>
                   </div>
                   <div className="text-base">
-                    <a href="./comingsoon" className="md:hover:text-blue-700">Ver todos os projetos →</a>
+                    <a href="./projetos" className="md:hover:text-blue-700">Ver todos os projetos →</a>
                   </div>
                 </div>
               </div>
