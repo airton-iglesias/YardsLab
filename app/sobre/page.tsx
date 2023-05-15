@@ -129,6 +129,16 @@ export default function Page() {
                             <div>
                                 <div className="overflow-hidden rounded-md bg-slate-800">
                                     <div className="aspect-w-3 aspect-h-2">
+                                        <img className="h-full w-full object-cover object-center" src="/images/nextjs-logo.png" alt="Image post 2" loading="lazy"/>
+                                    </div>
+                                    <div className="px-3 pt-4 pb-6 text-center">
+                                        <h2 className="text-xl font-semibold text-white">NextJS</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div className="overflow-hidden rounded-md bg-slate-800">
+                                    <div className="aspect-w-3 aspect-h-2">
                                         <img className="h-full w-full object-cover object-center" src="/images/node-logo.png" alt="Image post 3" loading="lazy"/>
                                     </div>
                                     <div className="px-3 pt-4 pb-6 text-center">
