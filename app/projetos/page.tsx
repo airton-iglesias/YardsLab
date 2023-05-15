@@ -18,7 +18,7 @@ export const metadata = {
 export default function Page() {
     return (
         <>
-            <Header/>
+            <Header pathname="/projetos"/>
 
             <div className="bg-gradient-to-r from-slate-900 to-slate-700 h-screen">
                 <section className="py-32">
@@ -26,9 +26,6 @@ export default function Page() {
                         <div className="mb-6 text-2xl font-bold">
                             <div className="flex items-baseline justify-between text-white">
                                 <div>Projetos</div>
-                                <div className="text-base">
-                                    <a href="./" className="md:hover:text-blue-700">Ver todos os projetos →</a>
-                                </div>
                             </div>
                         </div>
 

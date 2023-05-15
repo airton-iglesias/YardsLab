@@ -1,20 +1,19 @@
 "use client";
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Fragment } from 'react';
+import { Disclosure, Menu, Transition } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
-const navigation = [
-    { name: 'Início', href: '/'},
-    { name: 'Sobre', href: '/sobre'},
-    { name: 'Projetos', href: '/projetos'},
+const navegation = [
+    { name: 'Início', href: '/', current: true},
+    { name: 'Sobre', href: '/sobre', current: false},
+    { name: 'Projetos', href: '/projetos', current: false},
 ]
-
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
-  }
+}
 
-export default function Header() {
+export default function Header(pathname) {
   return (
     <>
         <header>
@@ -26,15 +25,12 @@ export default function Header() {
 
                     <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
                         <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0  dark:border-gray-700">
-                            <li>
-                                <a href="/" className="block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Início</a>
-                            </li>
-                            <li>
-                                <a href="./sobre" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Sobre</a>
-                            </li>
-                            <li>
-                                <a href="./projetos" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Projetos</a>
-                            </li>
+                            {navegation.map((item) => (
+                                <li  key={item.name}>
+                                    <a href={item.href} className={classNames(item.href == pathname.pathname  ? "text-blue-500" : "md:hover:text-blue-700 text-white")}  
+                                    >{item.name}</a>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
@@ -64,7 +60,6 @@ export default function Header() {
                                 
                                     <Disclosure.Panel className="absolute left-0 mt-4 w-full h-screen rounded-md text-center bg-white text-gray-500 ">
                                         <ul>
-                                           
                                             <li>
                                                 <a href="/" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2 mt-5" aria-current="page">Início</a>
                                             </li>
@@ -80,6 +75,7 @@ export default function Header() {
                             )}
                         </Disclosure>
                     </div>
+
                 </div>
             </nav>
         </header>

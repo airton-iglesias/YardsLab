@@ -18,7 +18,7 @@ export const metadata = {
 export default function Page() {
     return (
         <>
-            <Header/>
+            <Header pathname="/sobre"/>
 
             <div className="bg-gradient-to-r from-slate-900 to-slate-700">
                 <section>

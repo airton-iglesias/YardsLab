@@ -25,7 +25,7 @@ export default function Page() {
         </Head>
 
         <div className="bg-gradient-to-r from-slate-900 to-slate-700">
-          <Header/>
+          <Header pathname='/'/>
           <section>
             <div className="mx-auto max-w-screen-lg px-3 py-6">
               <div className="flex flex-col items-center md:flex-row md:justify-between md:gap-x-24">
