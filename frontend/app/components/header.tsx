@@ -27,7 +27,7 @@ export default function Header(pathname) {
                         <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0  dark:border-gray-700">
                             {navegation.map((item) => (
                                 <li  key={item.name}>
-                                    <a href={item.href} className={classNames(item.href == pathname.pathname  ? "text-blue-500" : "md:hover:text-blue-700 text-white")}  
+                                    <a href={item.href} className={classNames(item.href == pathname.pathname  ? "text-blue-500" : "md:hover:text-blue-500 text-white")}  
                                     >{item.name}</a>
                                 </li>
                             ))}
@@ -45,7 +45,7 @@ export default function Header(pathname) {
                                 <Menu.Items className="absolute right-0 z-10 mt-2 text-center w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                     <Menu.Item>
                                         {({ active }) => (
-                                            <a href="./comingsoon" className={classNames(active ? 'bg-gray-200' : '', 'block px-4 py-2 rounded-md text-sm text-gray-700')}>Entrar</a>)}
+                                            <a href="./auth/login" className={classNames(active ? 'bg-blue-500' : '', 'block px-4 py-2 rounded-md text-sm text-gray-700')}>Entrar</a>)}
                                     </Menu.Item>
                                 </Menu.Items>
                             </Transition>

@@ -37,7 +37,7 @@ export default function Page() {
                   Busco formas para sempre aprimorar o meu conhecimento com os projetos que crio. YardsLab é como chamo esse espaço e <span className="text-cyan-400">espero que goste do que irá encontrar aqui!</span>
                   </p>
                   <div className="mt-12 w-36 h-10">
-                    <a className="w-full h-full p-3 bg-white rounded-md md:hover:bg-blue-700 font-medium" href="https://wa.me/5592991920999">Me Contrate →</a>
+                    <a className="w-full h-full p-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md font-medium" href="https://wa.me/5592991920999">Me Contrate →</a>
                   </div>
                 </div>
                 <div className="shrink-0 mt-20 hover:scale-110">
@@ -57,7 +57,7 @@ export default function Page() {
                     <span className="bg-gradient-to-br from-sky-500 to-cyan-400 bg-clip-text text-transparent"> Ferramentas</span>
                   </div>
                   <div className="text-base">
-                    <a href="./sobre" className="md:hover:text-blue-700">Ver todas as ferramentas →</a>
+                    <a href="./sobre" className="md:hover:text-indigo-600">Ver todas as ferramentas →</a>
                   </div>
                 </div>
               </div>
@@ -107,7 +107,7 @@ export default function Page() {
                     <span className="bg-gradient-to-br from-sky-500 to-cyan-400 bg-clip-text text-transparent"> Recentes</span>
                   </div>
                   <div className="text-base">
-                    <a href="./projetos" className="md:hover:text-blue-700">Ver todos os projetos →</a>
+                    <a href="./projetos" className="md:hover:text-indigo-600">Ver todos os projetos →</a>
                   </div>
                 </div>
               </div>
