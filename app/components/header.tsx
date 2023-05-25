@@ -2,6 +2,7 @@
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 
 const navegation = [
     { name: 'Início', href: '/', current: true},
@@ -19,16 +20,16 @@ export default function Header(pathname) {
         <header>
             <nav className="fixed z-50 w-full bg-slate-800 border-gray-200 dark:bg-gray-900">
                 <div className="flex flex-wrap items-center justify-between mx-auto p-4">
-                    <a href="/" className="flex items-center">
+                    <Link href="/" className="flex items-center">
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">YardsLab</span>
-                    </a>
+                    </Link>
 
                     <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
                         <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0  dark:border-gray-700">
                             {navegation.map((item) => (
                                 <li  key={item.name}>
-                                    <a href={item.href} className={classNames(item.href == pathname.pathname  ? "text-blue-500" : "md:hover:text-blue-500 text-white")}  
-                                    >{item.name}</a>
+                                    <Link href={item.href} className={classNames(item.href == pathname.pathname  ? "text-blue-500" : "md:hover:text-blue-500 text-white")}  
+                                    >{item.name}</Link>
                                 </li>
                             ))}
                         </ul>
@@ -45,7 +46,7 @@ export default function Header(pathname) {
                                 <Menu.Items className="absolute right-0 z-10 mt-2 text-center w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                     <Menu.Item>
                                         {({ active }) => (
-                                            <a href="./auth/login" className={classNames(active ? 'bg-blue-500' : '', 'block px-4 py-2 rounded-md text-sm text-gray-700')}>Entrar</a>)}
+                                            <Link href="./auth/login" className={classNames(active ? 'bg-blue-500' : '', 'block px-4 py-2 rounded-md text-sm text-gray-700')}>Entrar</Link>)}
                                     </Menu.Item>
                                 </Menu.Items>
                             </Transition>
@@ -61,13 +62,13 @@ export default function Header(pathname) {
                                     <Disclosure.Panel className="absolute left-0 mt-4 w-full h-screen rounded-md text-center bg-white text-gray-500 ">
                                         <ul>
                                             <li>
-                                                <a href="/" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2 mt-5" aria-current="page">Início</a>
+                                                <Link href="/" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2 mt-5" aria-current="page">Início</Link>
                                             </li>
                                             <li className="">
-                                                <a href="./sobre" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2">Sobre</a>
+                                                <Link href="./sobre" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2">Sobre</Link>
                                             </li>
                                             <li>
-                                                <a href="./projetos" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white">Projetos</a>
+                                                <Link href="./projetos" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white">Projetos</Link>
                                             </li>
                                         </ul>
                                     </Disclosure.Panel>

@@ -1,29 +1,13 @@
-import React from 'react';
+"use client";
+import React, { useState, useEffect } from 'react';
 import Header from "./components/header";
 import Footer from "./components/footer";
-import Head from 'next/head';
-
-
-export const metadata = {
-  title: 'YardsLab',
-  icons: {
-    icon: '/icons/favicon.png',
-    shortcut: '/icons/favicon.png',
-    apple: '/icons/favicon.png',
-    other: {
-      rel: 'apple-touch-icon-precomposed',
-      url: '/icons/favicon.png',
-    },
-  },
-};
+import CheckCookies from "./components/checkCookies";
+import Link from 'next/link';
 
 export default function Page() {
     return (
       <>
-        <Head>
-          <link rel="shortcut icon" href="/favicon.png" />
-        </Head>
-
         <div className="bg-gradient-to-r from-slate-900 to-slate-700">
           <Header pathname='/'/>
           <section>
@@ -37,7 +21,7 @@ export default function Page() {
                   Busco formas para sempre aprimorar o meu conhecimento com os projetos que crio. YardsLab é como chamo esse espaço e <span className="text-cyan-400">espero que goste do que irá encontrar aqui!</span>
                   </p>
                   <div className="mt-12 w-36 h-10">
-                    <a className="w-full h-full p-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md font-medium" href="https://wa.me/5592991920999">Me Contrate →</a>
+                    <Link className="w-full h-full p-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md font-medium" href="https://wa.me/5592991920999">Me Contrate →</Link>
                   </div>
                 </div>
                 <div className="shrink-0 mt-20 hover:scale-110">
@@ -57,7 +41,7 @@ export default function Page() {
                     <span className="bg-gradient-to-br from-sky-500 to-cyan-400 bg-clip-text text-transparent"> Ferramentas</span>
                   </div>
                   <div className="text-base">
-                    <a href="./sobre" className="md:hover:text-indigo-600">Ver todas as ferramentas →</a>
+                    <Link href="./sobre" className="md:hover:text-indigo-600">Ver todas as ferramentas →</Link>
                   </div>
                 </div>
               </div>
@@ -107,7 +91,7 @@ export default function Page() {
                     <span className="bg-gradient-to-br from-sky-500 to-cyan-400 bg-clip-text text-transparent"> Recentes</span>
                   </div>
                   <div className="text-base">
-                    <a href="./projetos" className="md:hover:text-indigo-600">Ver todos os projetos →</a>
+                    <Link href="./projetos" className="md:hover:text-indigo-600">Ver todos os projetos →</Link>
                   </div>
                 </div>
               </div>
@@ -137,13 +121,15 @@ export default function Page() {
                       Nele, você poderá guardar senhas, cartões e muito mais. Tudo é armazenado na nuvem para que você tenha a garantia de que não irá perder as suas informações! 
                     </p>
                     <div className="text-cyan-400 hover:underline">
-                      <a href="./comingsoon">Ir para o projeto →</a>
+                      <Link href="./comingsoon">Ir para o projeto →</Link>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </section>
+
+          <CheckCookies/>
 
           <Footer/>     
         </div>

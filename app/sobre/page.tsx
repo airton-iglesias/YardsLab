@@ -1,23 +1,12 @@
 import React from 'react';
 import Header from "../components/header";
 import Footer from "../components/footer";
-
-export const metadata = {
-    title: 'YardsLab - Sobre',
-    icons: {
-      icon: '/icons/favicon.png',
-      shortcut: '/icons/favicon.png',
-      apple: '/icons/favicon.png',
-      other: {
-        rel: 'apple-touch-icon-precomposed',
-        url: '/icons/favicon.png',
-      },
-    },
-  };
+import CheckCookies from "../components/checkCookies";
+import Link from 'next/link';
 
 export default function Page() {
     return (
-        <>
+        <>  
             <Header pathname="/sobre"/>
 
             <div className="bg-gradient-to-r from-slate-900 to-slate-700">
@@ -51,7 +40,7 @@ export default function Page() {
                             </div>
                         </div>
                         <div className="grid grid-cols-1 gap-6 md:grid-cols-5">
-                            <a href="https://wa.me/5592991920999" className="hover:scale-110">
+                            <Link href="https://wa.me/5592991920999" className="hover:scale-110">
                                 <div className="overflow-hidden rounded-md bg-slate-800">
                                     <div className="aspect-w-3 aspect-h-2">
                                         <img className="h-full w-full object-cover object-center" src="/images/whatsapp-logo.png" alt="Image post 2" loading="lazy"/>
@@ -60,8 +49,8 @@ export default function Page() {
                                         <h2 className="text-xl font-semibold text-white">Whatsapp</h2>
                                     </div>
                                 </div>
-                            </a>
-                            <a href="https://www.instagram.com/airtonigls/" className="hover:scale-110">
+                            </Link>
+                            <Link href="https://www.instagram.com/airtonigls/" className="hover:scale-110">
                                 <div className="overflow-hidden rounded-md bg-slate-800">
                                     <div className="aspect-w-3 aspect-h-2">
                                         <img className="h-full w-full object-cover object-center" src="/images/instagram-logo.png" alt="Image post 3" loading="lazy"/>
@@ -70,8 +59,8 @@ export default function Page() {
                                         <h2 className="text-xl font-semibold text-white">Instagram</h2>
                                     </div>
                                 </div>
-                            </a>
-                            <a href="https://linkedin.com/in/airton-iglesias-0102aa216" className="hover:scale-110">
+                            </Link>
+                            <Link href="https://linkedin.com/in/airton-iglesias-0102aa216" className="hover:scale-110">
                                 <div className="overflow-hidden rounded-md bg-slate-800">
                                     <div className="aspect-w-3 aspect-h-2">
                                         <img className="h-full w-full object-cover object-center" src="/images/linkedin-logo.png" alt="Image post 3" loading="lazy"/>
@@ -80,8 +69,8 @@ export default function Page() {
                                         <h2 className="text-xl font-semibold text-white">Linkedin</h2>
                                     </div>
                                 </div>
-                            </a>
-                            <a href="https://github.com/airton-iglesias" className="hover:scale-110">
+                            </Link>
+                            <Link href="https://github.com/airton-iglesias" className="hover:scale-110">
                                 <div className="overflow-hidden rounded-md bg-slate-800">
                                     <div className="aspect-w-3 aspect-h-2">
                                         <img className="h-full w-full object-cover object-center" src="/images/github-logo.png" alt="Image post 3" loading="lazy"/>
@@ -90,8 +79,8 @@ export default function Page() {
                                         <h2 className="text-xl font-semibold text-white">Github</h2>
                                     </div>
                                 </div>
-                            </a>
-                            <a href="#" className="hover:scale-110">
+                            </Link>
+                            <Link href="#" className="hover:scale-110">
                                 <div className="overflow-hidden rounded-md bg-slate-800">
                                     <div className="aspect-w-3 aspect-h-2">
                                         <img className="h-full w-full object-cover object-center" src="/images/email-logo.png" alt="Image post 3" loading="lazy"/>
@@ -100,7 +89,7 @@ export default function Page() {
                                         <h2 className="text-xl font-semibold text-white">Email</h2>
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </section>
@@ -234,6 +223,7 @@ export default function Page() {
                         </div>
                     </div>
                 </section>
+                <CheckCookies/>
                 <Footer/>     
             </div>
         </>

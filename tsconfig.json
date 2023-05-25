@@ -29,7 +29,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "app/comingsoon/page.tsx", "app/api/auth/usuarios.tsx", "server.js", "app/server.js"  ],
+, "app/comingsoon/page.tsx", "app/api/auth/usuarios.tsx", "server.js", "server.tsx"  ],
   "exclude": [
     "node_modules"
   ]

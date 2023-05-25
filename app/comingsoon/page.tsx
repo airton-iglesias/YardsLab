@@ -1,20 +1,7 @@
 import React from 'react';
 import Navbar from "../components/header";
-
-
-export const metadata = {
-    title: 'YardsLab - Coming Soon',
-    icons: {
-      icon: '/icons/favicon.png',
-      shortcut: '/icons/favicon.png',
-      apple: '/icons/favicon.png',
-      other: {
-        rel: 'apple-touch-icon-precomposed',
-        url: '/icons/favicon.png',
-      },
-    },
-  };
-
+import CheckCookies from "../components/checkCookies";
+import Footer from "../components/footer";
 
 export default function Page() {
     return (
@@ -33,6 +20,8 @@ export default function Page() {
                     <img className="w-120 h-120 mx-auto" src="/images/teamwork.png" loading="lazy"/>
                 </div>
             </div>
+            <CheckCookies/>
+            <Footer/>
         </>
     );
   }

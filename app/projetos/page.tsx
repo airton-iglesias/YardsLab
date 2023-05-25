@@ -1,19 +1,8 @@
 import React from 'react';
 import Header from "../components/header";
 import Footer from "../components/footer";
-
-export const metadata = {
-    title: 'YardsLab - Projetos',
-    icons: {
-      icon: '/icons/favicon.png',
-      shortcut: '/icons/favicon.png',
-      apple: '/icons/favicon.png',
-      other: {
-        rel: 'apple-touch-icon-precomposed',
-        url: '/icons/favicon.png',
-      },
-    },
-  };
+import CheckCookies from "../components/checkCookies";
+import Link from 'next/link';
 
 export default function Page() {
     return (
@@ -54,7 +43,7 @@ export default function Page() {
                                     Nele, você poderá guardar senhas, cartões e muito mais. Tudo é armazenado na nuvem para que você tenha a garantia de que não irá perder as suas informações! 
                                     </p>
                                     <div className="text-cyan-400 hover:underline">
-                                        <a href="./comingsoon">Ir para o projeto →</a>
+                                        <Link href="./comingsoon">Ir para o projeto →</Link>
                                     </div>
                                 </div>
                             </div>
@@ -62,6 +51,7 @@ export default function Page() {
                     </div>
                 </section>
                 <div className="mb-80"></div>
+                <CheckCookies/>
                 <Footer/>     
             </div>
         </>
