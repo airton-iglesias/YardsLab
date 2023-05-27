@@ -67,6 +67,7 @@ export default function Header(pathname) {
 
         if(data.message == "logoutSucessfull"){
             setLogged(false)
+            window.document.cookie = ''
             router.push("/")
             
         }
