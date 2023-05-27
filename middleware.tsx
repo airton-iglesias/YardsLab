@@ -1,12 +1,30 @@
 import {NextRequest, NextResponse} from "next/server";
 
+
 export function middleware(req: NextRequest){
-    const sessionCookie = req.cookies.get('session')
-    req.cookies.set('new_cookie', 'my_new_cookie')
-    if(req.nextUrl.pathname.includes('/dashboard')){
-        if(!sessionCookie){
-           
+    let cookieLogin = req.cookies.get("loginID")
+
+    if(req.nextUrl.pathname.startsWith("/auth/login")){
+        if(cookieLogin){
+            return NextResponse.redirect(new URL('/dashboard', req.url));
+        }
+        else{
             return NextResponse.next();
+        }
+    }
+
+    else if(req.nextUrl.pathname.startsWith("/auth/register")){
+        if(cookieLogin){
+            return NextResponse.redirect(new URL('/dashboard', req.url));
+        }
+        else{
+            return NextResponse.next();
+        }
+    }
+
+    if(req.nextUrl.pathname.startsWith("/dashboard")){
+        if(!cookieLogin){
+            return NextResponse.redirect(new URL('/auth/login', req.url));
         }
         else{
             return NextResponse.next();

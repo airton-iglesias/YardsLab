@@ -19,7 +19,6 @@ export default function checkCookies(){
     }
     return(
         <>
-            <div>a</div>
             {checkCookies ?                 
                 <section className="fixed bottom-2 mx-auto w-full h-16 z-10">
                     <div className="flex gap-4 items-center mx-auto h-full w-fit px-4 rounded-lg bg-white">
@@ -32,7 +31,7 @@ export default function checkCookies(){
                         </button>
                     </div>
                 </section>
-                :<div className="hidden"></div>
+                :<></>
             }
         </>
     )

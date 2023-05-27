@@ -8,30 +8,46 @@ datasource db {
   relationMode = "prisma"
 }
 
-model Users{
-    id Int @id @default(autoincrement())
-    email String @unique @db.VarChar(355)
-    password String @db.VarChar(355)
-    name String @db.VarChar(355)
-    idade Int?
-    sexo Sexo? @default(M)
-    rua String? @db.VarChar(355)
-    numero Int? 
-    bairro String? @db.VarChar(355)
-    cidade String? @db.VarChar(355)
-    cep String? @db.VarChar(355)
-    celular Int 
-    isPremium Premium @default(USER)
-    validityPremium String? @db.VarChar(10)
+model Users {
+  id               Int      @id @default(autoincrement())
+  email            String   @unique @db.VarChar(355)
+  password         String   @db.VarChar(355)
+  name             String   @db.VarChar(355)
+  idade            Int?
+  sexo             Sexo?    @default(NULL)
+  rua              String?  @db.VarChar(355)
+  numero           Int?
+  bairro           String?  @db.VarChar(355)
+  cidade           String?  @db.VarChar(355)
+  cep              String?  @db.VarChar(355)
+  celular          Int?
+  yardPassAccount  YardPassEnum @default(FALSE)
+  isPremium        Premium  @default(USER)
+  validityPremium  String?  @db.VarChar(10)
+
+  yardpassuservault YardPass?
 }
 
-enum Sexo{
-    M
-    F
+enum Sexo {
+  NULL
+  M
+  F
 }
 
-enum Premium{
-    USER
-    PREMIUM
-    ADMIN
+enum YardPassEnum {
+    FALSE
+    TRUE
+}
+
+enum Premium {
+  USER
+  PREMIUM
+  ADMIN
+}
+
+model YardPass {
+  id        Int    @id @default(autoincrement())
+  user      Users  @relation(fields: [userId], references: [id])
+  userId    Int    @unique
+  password  String @db.VarChar(355)
 }

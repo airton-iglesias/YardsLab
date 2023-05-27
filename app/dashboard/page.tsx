@@ -3,19 +3,24 @@ import Footer from "../components/footer";
 import Asidebaraccount from "../components/asidebar-Account";
 import CheckCookies from "../components/checkCookies";
 import Link from 'next/link';
+import Header from '../components/header';
 
 
 export default function Page() {
   return (
-    <>
-      <Asidebaraccount/>
-          
+    <> 
+      <div className="fixed top-0 z-[30]">
+        <Header pathname="/dashboard" />
+      </div>
+      <div>
+        <Asidebaraccount/>
+      </div>
       <section>
-        <div className="mx-auto ml-80 max-w-screen-lg px-3 py-6">
+        <div className=" pr-3 ml-0 mt-20 w-max-screen px-3 py-6  lg:ml-80 lg:pr-[30px]">
           <div className="pb-6 mt-6 text-center">
             <Link href="#" className="flex w-32 items-center justify-center rounded-md border border-transparent bg-indigo-600 hover:bg-indigo-700 py-3 text-base font-medium text-white">
-              <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 10.5v6m3-3H9m4.06-7.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
               </svg>
             </Link>
           </div>
@@ -28,8 +33,9 @@ export default function Page() {
               <div className="text-base"></div>
             </div>
           </div>
+          <div className="relative grid grid-cols-1 gap-6 lg:grid-cols-4 min-w-[100%] max-w-[100%]">
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+
             <div className="shadow-sm shadow-neutral-700">
               <div className="overflow-hidden rounded-md bg-white">
                 <div className="aspect-w-3 aspect-h-2">
@@ -43,13 +49,29 @@ export default function Page() {
                 </div>
               </div>
             </div>
+
+            <div className="shadow-sm shadow-neutral-700">
+              <div className="overflow-hidden rounded-md bg-white">
+
+              </div>
+            </div>
+
+            <div className="shadow-sm shadow-neutral-700">
+              <div className="overflow-hidden rounded-md bg-white">
+
+              </div>
+            </div>
+
+            <div className="shadow-sm shadow-neutral-700">
+              <div className="overflow-hidden rounded-md bg-white">
+
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
-      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
       <CheckCookies/>
-      <Footer />     
-            
     </>
   );
 }
