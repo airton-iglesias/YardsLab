@@ -145,11 +145,11 @@ export default function Header(pathname) {
                                         </Menu.Item>
                                         <Menu.Item>
                                             {({ active }) => (
-                                                <Link href="#" className={classNames(active ? 'bg-blue-500' : '', 'block px-4 py-2 rounded-lg text-sm text-gray-700')}>Conta</Link>)}
+                                                <Link href="/comingsoon" className={classNames(active ? 'bg-blue-500' : '', 'block px-4 py-2 rounded-lg text-sm text-gray-700')}>Conta</Link>)}
                                         </Menu.Item>
                                         <Menu.Item>
                                             {({ active }) => (
-                                                <Link href="#" className={classNames(active ? 'bg-blue-500' : '', 'block px-4 py-2 rounded-lg text-sm text-gray-700')}>Configurações</Link>)}
+                                                <Link href="/comingsoon" className={classNames(active ? 'bg-blue-500' : '', 'block px-4 py-2 rounded-lg text-sm text-gray-700')}>Configurações</Link>)}
                                         </Menu.Item>
                                         <Menu.Item>
                                             {({ active }) => (
@@ -170,7 +170,7 @@ export default function Header(pathname) {
                                     <Menu.Items className="absolute right-0 z-10 mt-2 text-center w-32 origin-top-right rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                         <Menu.Item>
                                             {({ active }) => (
-                                                <Link href="./auth/login" className={classNames(active ? 'bg-blue-500' : '', 'block px-4 py-2 rounded-lg text-sm text-gray-700')}>Entrar</Link>)}
+                                                <Link href="/auth/login" className={classNames(active ? 'bg-blue-500' : '', 'block px-4 py-2 rounded-lg text-sm text-gray-700')}>Entrar</Link>)}
                                         </Menu.Item>
                                     </Menu.Items>
                                 </Transition>
@@ -190,10 +190,10 @@ export default function Header(pathname) {
                                                 <Link href="/" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2 mt-5" aria-current="page">Início</Link>
                                             </li>
                                             <li className="">
-                                                <Link href="./sobre" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2">Sobre</Link>
+                                                <Link href="/sobre" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2">Sobre</Link>
                                             </li>
                                             <li>
-                                                <Link href="./projetos" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white">Projetos</Link>
+                                                <Link href="/projetos" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white">Projetos</Link>
                                             </li>
                                         </ul>
                                     </Disclosure.Panel>

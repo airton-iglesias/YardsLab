@@ -75,7 +75,7 @@ export default function Page() {
                             <Link href="/" className="hover:bg-blue-700 p-3 text-white bg-blue-600 rounded-lg">← Página Inicial</Link>
                         </div>
                         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                            <Link href="#" className="flex items-center justify-center mb-6 text-2xl font-semibold text-gray-900 ">
+                            <Link href="/" className="flex items-center justify-center mb-6 text-2xl font-semibold text-gray-900 ">
                                 <img className="w-8 h-8 mr-2" src="/icons/favicon.png" alt="logo"/>
                                 YardsLab  
                             </Link>

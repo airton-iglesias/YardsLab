@@ -41,7 +41,7 @@ export default function Page() {
                     <span className="bg-gradient-to-br from-sky-500 to-cyan-400 bg-clip-text text-transparent"> Ferramentas</span>
                   </div>
                   <div className="text-base">
-                    <Link href="./sobre" className="md:hover:text-indigo-600">Ver todas as ferramentas →</Link>
+                    <Link href="/sobre" className="md:hover:text-indigo-600">Ver todas as ferramentas →</Link>
                   </div>
                 </div>
               </div>
@@ -91,7 +91,7 @@ export default function Page() {
                     <span className="bg-gradient-to-br from-sky-500 to-cyan-400 bg-clip-text text-transparent"> Recentes</span>
                   </div>
                   <div className="text-base">
-                    <Link href="./projetos" className="md:hover:text-indigo-600">Ver todos os projetos →</Link>
+                    <Link href="/projetos" className="md:hover:text-indigo-600">Ver todos os projetos →</Link>
                   </div>
                 </div>
               </div>
@@ -121,7 +121,7 @@ export default function Page() {
                       Nele, você poderá guardar senhas, cartões e muito mais. Tudo é armazenado na nuvem para que você tenha a garantia de que não irá perder as suas informações! 
                     </p>
                     <div className="text-cyan-400 hover:underline">
-                      <Link href="./comingsoon">Ir para o projeto →</Link>
+                      <Link href="/comingsoon">Ir para o projeto →</Link>
                     </div>
                   </div>
                 </div>
