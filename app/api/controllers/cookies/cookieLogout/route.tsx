@@ -9,17 +9,7 @@ export async function POST(req: NextRequest) {
   const cookiesExist = req.cookies.get("loginID");
 
   if(cookiesExist){
-    let currentDate = new Date();
-    let expirationDate = new Date();
-    expirationDate.setMonth(currentDate.getMonth() - 99999999);
-    cookies().set({
-      name: 'loginID',
-      value: `0`,
-      expires: expirationDate,
-      httpOnly: true,
-      path: '/',
-      secure: true
-    });
+    req.cookies.delete("loginID")
 
     return NextResponse.json({message: "logoutSucessfull"})
   }

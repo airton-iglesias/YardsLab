@@ -38,7 +38,6 @@ export default function Page() {
 
             if(data.message == "sucess"){
                 router.push("/dashboard")
-                setInterval(() => setSubmitButton(true), 3000)
             }
             else if(data.message == "passwordError"){
                 toast.error("senha invalida")
