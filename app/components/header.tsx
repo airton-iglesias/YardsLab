@@ -3,6 +3,8 @@ import { Fragment, useEffect, useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import toast, { Toaster } from 'react-hot-toast';
 
 const navegation = [
     { name: 'Início', href: '/', current: true},
@@ -19,6 +21,7 @@ export default function Header(pathname) {
 
     const [dashboardPath, setDashboardPath] = useState(false);
     const [isLogged, setLogged] = useState(false);
+    const router = useRouter();
 
     useEffect(() => {
         if(pathname.pathname === "/dashboard"){
@@ -51,6 +54,27 @@ export default function Header(pathname) {
         reqData()
 
     }, []);
+
+    const cookiesLogout = async () =>{
+        const req = await fetch('/api/controllers/cookies/cookieLogout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+
+        const data = await req.json();
+
+        if(data.message == "logoutSucessfull"){
+            setLogged(false)
+            router.push("/")
+            
+        }
+        else if(data.message == "errorLogout"){    
+            setLogged(true)
+            toast.error("Falha ao fazer logout")
+        }
+    }
 
 
   return (
@@ -128,7 +152,7 @@ export default function Header(pathname) {
                                         </Menu.Item>
                                         <Menu.Item>
                                             {({ active }) => (
-                                                <Link href="#" className={classNames(active ? 'bg-blue-500' : '', 'block px-4 py-2 rounded-lg text-sm text-gray-700')}>Sair</Link>)}
+                                                <button onClick={cookiesLogout} className={classNames(active ? 'bg-blue-500' : '', 'block px-4 py-2 rounded-lg text-sm text-gray-700')}>Sair</button>)}
                                         </Menu.Item>
                                     </Menu.Items>
                                 </Transition>

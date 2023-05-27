@@ -37,22 +37,18 @@ export default function Page() {
             const data = await res.json();
 
             if(data.message == "sucess"){
-                console.log("entrou em sucess")
                 router.push("/dashboard")
                 setInterval(() => setSubmitButton(true), 3000)
             }
             else if(data.message == "passwordError"){
                 toast.error("senha invalida")
-                console.log("entrou em senha invalida")
                 setSubmitButton(true);
             }
             else if (data.message == "userNotExist"){
-                console.log("entrou em user n existe")
                 toast.error("usuario nao existe")
                 setSubmitButton(true);
             }
             else if(data.message == "InternalError"){
-                console.log("entrou em operacao erro")
                 toast.error("Falha na operação")
                 setSubmitButton(true);
             }
