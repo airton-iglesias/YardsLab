@@ -153,7 +153,7 @@ export default function Header(pathname) {
                                         </Menu.Item>
                                         <Menu.Item>
                                             {({ active }) => (
-                                                <button onClick={cookiesLogout} className={classNames(active ? 'bg-blue-500' : '', 'block px-4 py-2 rounded-lg text-sm text-gray-700')}>Sair</button>)}
+                                                <Link href="#" className={classNames(active ? 'bg-blue-500' : '', 'block px-4 py-2 rounded-lg text-sm text-gray-700')}>Sair</Link>)}
                                         </Menu.Item>
                                     </Menu.Items>
                                 </Transition>
