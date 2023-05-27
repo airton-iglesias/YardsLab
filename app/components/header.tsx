@@ -60,6 +60,7 @@ export default function Header(pathname) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                
             },
         })
 
