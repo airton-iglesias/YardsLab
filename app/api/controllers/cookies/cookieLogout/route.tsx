@@ -9,7 +9,8 @@ export async function POST(req: NextRequest) {
   const cookiesExist = req.cookies.get("loginID");
 
   if(cookiesExist){
-    req.cookies.clear()
+    req.cookies.clear();
+    req.cookies.delete('loginID');
     return NextResponse.json({message: "logoutSucessfull"})
   }
   else{
