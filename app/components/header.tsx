@@ -67,13 +67,13 @@ export default function Header(pathname) {
         const data = await req.json();
 
         if(data.message == "logoutSucessfull"){
-            setLogged(false)
-            router.push("/")
+            setLogged(false);
+            router.replace("/");
             
         }
         else if(data.message == "errorLogout"){    
-            setLogged(true)
-            toast.error("Falha ao fazer logout")
+            setLogged(true);
+            toast.error("Falha ao fazer logout");
         }
     }
 

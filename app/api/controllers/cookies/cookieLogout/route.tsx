@@ -10,9 +10,9 @@ export async function POST(req: NextRequest) {
 
   if(cookiesExist){
     let currentDate = new Date();
-    let expirationDate = new Date()
-    ;
+    let expirationDate = new Date();
     expirationDate.setSeconds(currentDate.getSeconds() + 2);
+    
     cookies().set({
       name: 'loginID',
       value: `0`,
