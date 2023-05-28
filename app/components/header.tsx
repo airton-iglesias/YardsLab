@@ -69,7 +69,7 @@ export default function Header(pathname) {
         if(data.message == "logoutSucessfull"){
             setLogged(false);
             router.replace("/");
-            router.refresh();
+            window.location.reload();
         }
         else if(data.message == "errorLogout"){    
             setLogged(true);

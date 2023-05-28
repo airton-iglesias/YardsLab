@@ -57,8 +57,6 @@ export async function POST(req: NextRequest) {
     else{
       return NextResponse.json({message: "userNotExist"})
     }
-      
-    return NextResponse.json({message: "InternalError"});
   }
   catch(err){
     return NextResponse.json({err});
