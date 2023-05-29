@@ -4,11 +4,11 @@ import { createContext, useEffect, useState } from 'react';
 
 interface IUserContext {
     isLogged: boolean;
-    setIsLoggedTrue: any;
-    setIsLoggedFalse: any;
+    setIsLoggedTrue: Function;
+    setIsLoggedFalse: Function;
   }
 
-export const GlobalContext = createContext<IUserContext|{}>({});
+export const GlobalContext = createContext<IUserContext>({isLogged: false, setIsLoggedTrue: Function, setIsLoggedFalse: Function});
 
 
 export default function GlobalProvider({children}){

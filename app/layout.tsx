@@ -1,5 +1,3 @@
-"use client";
-
 import { Metadata } from "next";
 import "./components/styles.css";
 import GlobalProvider from "./context/GlobalContext";
