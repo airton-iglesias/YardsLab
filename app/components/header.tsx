@@ -29,7 +29,7 @@ export default function Header(pathname) {
     const [dashboardPath, setDashboardPath] = useState(false);
     const router = useRouter();
 
-    const myContext = useContext(GlobalContext);
+    const { isLogged, setIsLoggedTrue, setIsLoggedFalse} = useContext(GlobalContext);
 
     
 
@@ -55,12 +55,12 @@ export default function Header(pathname) {
         const data = await req.json();
 
         if(data.message == "logoutSucessfull"){
-            myContext.setIsLogged("false");
+            setIsLoggedFalse();
             router.replace("/");
             window.location.reload();
         }
         else if(data.message == "errorLogout"){    
-            myContext.setIsLogged("true");
+            setIsLoggedTrue();
             toast.error("Falha ao fazer logout");
         }
     }
@@ -77,7 +77,7 @@ export default function Header(pathname) {
 
                     <div className="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
                         <ul className="flex flex-col font-medium p-4 lg:p-0 mt-4 border border-gray-100 rounded-lg lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0  dark:border-gray-700">
-                            {myContext.isLogged == "true" ? (
+                            {isLogged ? (
                                 <>
                                     {navegationLogged.map((item) => (
                                         <li  key={item.name}>
@@ -127,7 +127,7 @@ export default function Header(pathname) {
                             </Disclosure>  
                         ):(<></>)}
 
-                        {myContext.isLogged == "true" ? 
+                        {isLogged ? 
                         (
                             <Menu as="div" className="relative p-2 text-gray-500 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <div>

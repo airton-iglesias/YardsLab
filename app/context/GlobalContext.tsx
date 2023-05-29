@@ -2,14 +2,20 @@
 
 import { createContext, useEffect, useState } from 'react';
 
-export const GlobalContext = createContext({});
+interface IUserContext {
+    isLogged: boolean;
+    setIsLoggedTrue: any;
+    setIsLoggedFalse: any;
+  }
+
+export const GlobalContext = createContext<IUserContext|{}>({});
 
 
 export default function GlobalProvider({children}){
-    const [isLogged, setIsLogged] = useState("false");
+    const [isLogged, setIsLogged] = useState(false);
 
     useEffect(() => {
-        if (isLogged === "false"){
+        if (isLogged === false){
             const reqData = async () =>  {
 
                 const req = await fetch('/api/controllers/cookies/cookieExist', {
@@ -22,10 +28,10 @@ export default function GlobalProvider({children}){
                 const data = await req.json();
     
                 if(data.message == "cookieExist"){
-                    setIsLogged("true")
+                    setIsLogged(true)
                 }
                 else if(data.message == "NotExist"){
-                    setIsLogged("false") 
+                    setIsLogged(false) 
                 }
             }
                 
@@ -34,13 +40,16 @@ export default function GlobalProvider({children}){
 
     }, []);
 
-    const contextValue = {
-        isLogged, 
-        setIsLogged
+    const setIsLoggedTrue = () => {
+        setIsLogged(true);
+      };
+    
+      const setIsLoggedFalse = () => {
+        setIsLogged(false);
       };
 
     return(
-        <GlobalContext.Provider value={contextValue}>
+        <GlobalContext.Provider value={{isLogged, setIsLoggedTrue, setIsLoggedFalse}}>
             {children}
         </GlobalContext.Provider>
     )
