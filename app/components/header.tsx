@@ -1,15 +1,22 @@
 "use client";
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
+import { GlobalContext } from '../context/GlobalContext';
 
 const navegation = [
     { name: 'Início', href: '/', current: true},
     { name: 'Sobre', href: '/sobre', current: false},
     { name: 'Projetos', href: '/projetos', current: false},
+]
+const navegationLogged = [
+    { name: 'Início', href: '/', current: true},
+    { name: 'Sobre', href: '/sobre', current: false},
+    { name: 'Projetos', href: '/projetos', current: false},
+    { name: 'Dashboard', href: '/dashboard', current: false},
 ]
 
 
@@ -20,8 +27,11 @@ function classNames(...classes) {
 export default function Header(pathname) {
 
     const [dashboardPath, setDashboardPath] = useState(false);
-    const [isLogged, setLogged] = useState(false);
     const router = useRouter();
+
+    const myContext = useContext(GlobalContext);
+
+    
 
     useEffect(() => {
         if(pathname.pathname === "/dashboard"){
@@ -30,28 +40,6 @@ export default function Header(pathname) {
         else{
             setDashboardPath(false)
         }
-
-
-        const reqData = async () =>  {
-
-            const req = await fetch('/api/controllers/cookies/cookieExist', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-
-            const data = await req.json();
-
-            if(data.message == "cookieExist"){
-                setLogged(true)
-            }
-            else if(data.message == "NotExist"){    
-                setLogged(false)
-            }
-        }
-            
-        reqData()
 
     }, []);
 
@@ -67,12 +55,12 @@ export default function Header(pathname) {
         const data = await req.json();
 
         if(data.message == "logoutSucessfull"){
-            setLogged(false);
+            myContext.setIsLogged("false");
             router.replace("/");
             window.location.reload();
         }
         else if(data.message == "errorLogout"){    
-            setLogged(true);
+            myContext.setIsLogged("true");
             toast.error("Falha ao fazer logout");
         }
     }
@@ -89,12 +77,25 @@ export default function Header(pathname) {
 
                     <div className="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
                         <ul className="flex flex-col font-medium p-4 lg:p-0 mt-4 border border-gray-100 rounded-lg lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0  dark:border-gray-700">
-                            {navegation.map((item) => (
-                                <li  key={item.name}>
-                                    <Link href={item.href} className={classNames(item.href == pathname.pathname  ? "text-blue-500" : "lg:hover:text-blue-500 text-white")}  
-                                    >{item.name}</Link>
-                                </li>
-                            ))}
+                            {myContext.isLogged == "true" ? (
+                                <>
+                                    {navegationLogged.map((item) => (
+                                        <li  key={item.name}>
+                                            <Link href={item.href} className={classNames(item.href == pathname.pathname  ? "text-blue-500" : "lg:hover:text-blue-500 text-white")}  
+                                            >{item.name}</Link>
+                                        </li>
+                                    ))}
+                                </>
+                            ):(
+                                <>
+                                    {navegation.map((item) => (
+                                        <li  key={item.name}>
+                                            <Link href={item.href} className={classNames(item.href == pathname.pathname  ? "text-blue-500" : "lg:hover:text-blue-500 text-white")}  
+                                            >{item.name}</Link>
+                                        </li>
+                                    ))}
+                                </>
+                            )}
                         </ul>
                     </div>
 
@@ -117,10 +118,7 @@ export default function Header(pathname) {
                                                     <Link href="/" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2 mt-5" aria-current="page">Início</Link>
                                                 </li>
                                                 <li className="">
-                                                    <Link href="./sobre" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2">Sobre</Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="./projetos" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white">Projetos</Link>
+                                                    <Link href="./sobre" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2">Senhas</Link>
                                                 </li>
                                             </ul>
                                         </Disclosure.Panel>
@@ -129,7 +127,7 @@ export default function Header(pathname) {
                             </Disclosure>  
                         ):(<></>)}
 
-                        {isLogged? 
+                        {myContext.isLogged == "true" ? 
                         (
                             <Menu as="div" className="relative p-2 text-gray-500 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <div>
@@ -139,10 +137,6 @@ export default function Header(pathname) {
                                 </div>
                                 <Transition  as={Fragment} enter="transition ease-out duration-100" enterFrom="transform opacity-0 scale-95" enterTo="transform opacity-100 scale-100" leave="transition ease-in duration-75" leaveFrom="transform opacity-100 scale-100" leaveTo="transform opacity-0 scale-95">
                                     <Menu.Items className="absolute right-0 z-10 mt-2 text-center w-32 origin-top-right rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                        <Menu.Item>
-                                            {({ active }) => (
-                                                <Link href="/dashboard" className={classNames(active ? 'bg-blue-500' : '', 'block px-4 py-2 rounded-lg text-sm text-gray-700')}>Dashboard</Link>)}
-                                        </Menu.Item>
                                         <Menu.Item>
                                             {({ active }) => (
                                                 <Link href="/comingsoon" className={classNames(active ? 'bg-blue-500' : '', 'block px-4 py-2 rounded-lg text-sm text-gray-700')}>Conta</Link>)}
@@ -194,6 +188,9 @@ export default function Header(pathname) {
                                             </li>
                                             <li>
                                                 <Link href="/projetos" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white">Projetos</Link>
+                                            </li>
+                                            <li>
+                                                <Link href="/dashboard" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white">Dashboard</Link>
                                             </li>
                                         </ul>
                                     </Disclosure.Panel>

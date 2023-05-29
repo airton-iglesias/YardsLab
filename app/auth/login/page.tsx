@@ -37,18 +37,19 @@ export default function Page() {
             const data = await res.json();
 
             if(data.message == "sucess"){
-                router.push("/dashboard")
+                router.push("/dashboard");
+                window.location.reload();
             }
             else if(data.message == "passwordError"){
-                toast.error("senha invalida")
+                toast.error("senha invalida");
                 setSubmitButton(true);
             }
             else if (data.message == "userNotExist"){
-                toast.error("usuario nao existe")
+                toast.error("usuario nao existe");
                 setSubmitButton(true);
             }
             else if(data.message == "InternalError"){
-                toast.error("Falha na operação")
+                toast.error("Falha na operação");
                 setSubmitButton(true);
             }
         }
