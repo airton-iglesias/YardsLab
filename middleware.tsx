@@ -30,5 +30,13 @@ export function middleware(req: NextRequest){
             return NextResponse.next();
         }
     }
+    if(req.nextUrl.pathname.startsWith("/yardpass")){
+        if(!cookieLogin){
+            return NextResponse.redirect(new URL('/auth/login', req.url));
+        }
+        else{
+            return NextResponse.next();
+        }
+    }
 }
 
