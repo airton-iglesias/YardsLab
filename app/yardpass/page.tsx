@@ -36,7 +36,7 @@ export default function Page() {
   return (
     <> 
       <div className="fixed top-0 z-[30]">
-        <Header pathname="/dashboard" />
+        <Header pathname="/yardpass"/>
       </div>
       <div>
         <Asidebaraccount/>

@@ -1,10 +1,45 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
+import { toast } from "react-hot-toast";
 
 export default function ServiceAdd({setAddItemFalse}){
     const [submitButton, setSubmitButton] = useState(true);
     const [whatService, setWhatService] = useState("");
+    const [yardPassPassword, setYardPassPassword] = useState('');
+
+    const addService = async (e) =>{
+        e.preventDefault();
+        setSubmitButton(false);
+
+        try{
+            const res = await fetch('/api/controllers/services/yardslab/dashboard/addItem', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    password: yardPassPassword })
+            });
+            
+            const data = await res.json();
+
+            if (data.message == "sucess"){
+                setWhatService("YardPass");
+                setSubmitButton(false);
+                setAddItemFalse();
+                window.location.reload();
+            }
+            else{
+                toast.error("Algo deu errado!");
+            }
+
+        }
+        catch(err){
+            console.log(err);
+            setSubmitButton(true);
+        }
+    }
     
     return(
         <>
@@ -20,7 +55,7 @@ export default function ServiceAdd({setAddItemFalse}){
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                             </button>
-                            <form className="space-y-4 md:space-y-6">
+                            <form className="space-y-4 md:space-y-6" onSubmit={addService}>
                                 <div>
                                     <label className="block mb-2 text-sm font-medium text-gray-900 ">Escolha o serviço</label>
                                     <select onChange={(e)=>setWhatService(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" required>
@@ -32,7 +67,7 @@ export default function ServiceAdd({setAddItemFalse}){
                                     <>
                                         <div>
                                             <label className="block mb-2 text-sm font-medium text-gray-900 ">Senha do Cofre</label>
-                                            <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 " required/>
+                                            <input type="password" onChange={(e) => setYardPassPassword(e.target.value)} placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 " required/>
                                         </div>
                                     </>
                                     ): (<></>)
@@ -63,7 +98,6 @@ export default function ServiceAdd({setAddItemFalse}){
                     </div>
                 </div>
             </section>
-
         </>
     )
 }

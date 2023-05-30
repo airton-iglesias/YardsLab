@@ -22,6 +22,16 @@ export async function POST(req: NextRequest) {
       path: '/',
       secure: true
     })
+    cookies().set({
+      name: 'yardPass',
+      value: `0`,
+      expires: expirationDate,
+      maxAge: 0,
+      httpOnly: true,
+      path: '/',
+      secure: true
+    });
+    
     return NextResponse.json({message: "logoutSucessfull"})
   }
   else{

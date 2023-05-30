@@ -19,6 +19,14 @@ const navegationLogged = [
     { name: 'Dashboard', href: '/dashboard', current: false},
 ]
 
+const navegationWithYardPass = [
+    { name: 'Início', href: '/', current: true},
+    { name: 'Sobre', href: '/sobre', current: false},
+    { name: 'Projetos', href: '/projetos', current: false},
+    { name: 'Dashboard', href: '/dashboard', current: false},
+    { name: 'YardPass', href: '/yardpass', current: false},
+]
+
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -29,8 +37,7 @@ export default function Header(pathname) {
     const [dashboardPath, setDashboardPath] = useState(false);
     const router = useRouter();
 
-    const { isLogged, setIsLoggedTrue, setIsLoggedFalse} = useContext(GlobalContext);
-
+    const { isLogged, yardPassAccountExist,setIsLoggedTrue, setIsLoggedFalse} = useContext(GlobalContext);
     
 
     useEffect(() => {
@@ -65,7 +72,6 @@ export default function Header(pathname) {
         }
     }
 
-
   return (
     <>
         <header>
@@ -77,7 +83,16 @@ export default function Header(pathname) {
 
                     <div className="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
                         <ul className="flex flex-col font-medium p-4 lg:p-0 mt-4 border border-gray-100 rounded-lg lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0  dark:border-gray-700">
-                            {isLogged ? (
+                            {isLogged && yardPassAccountExist ? (
+                                <>
+                                    {navegationWithYardPass.map((item) => (
+                                        <li  key={item.name}>
+                                            <Link href={item.href} className={classNames(item.href == pathname.pathname  ? "text-blue-500" : "lg:hover:text-blue-500 text-white")}  
+                                            >{item.name}</Link>
+                                        </li>
+                                    ))}
+                                </>
+                            ): isLogged ? (
                                 <>
                                     {navegationLogged.map((item) => (
                                         <li  key={item.name}>

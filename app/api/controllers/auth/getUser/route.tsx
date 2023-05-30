@@ -30,6 +30,14 @@ export async function POST(req: NextRequest) {
             path: '/',
             secure: true
           });
+          cookies().set({
+            name: 'yardPass',
+            value: `${query.yardPassAccount}`,
+            expires: expirationDate,
+            httpOnly: true,
+            path: '/',
+            secure: true
+          });
           
           return NextResponse.json({message: "sucess"});
         }
@@ -40,6 +48,14 @@ export async function POST(req: NextRequest) {
           cookies().set({
             name: 'loginID',
             value: `${query.id}`,
+            expires: expirationDate,
+            httpOnly: true,
+            path: '/',
+            secure: true
+          });
+          cookies().set({
+            name: 'yardPass',
+            value: `${query.yardPassAccount}`,
             expires: expirationDate,
             httpOnly: true,
             path: '/',

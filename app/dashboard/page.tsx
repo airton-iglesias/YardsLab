@@ -19,7 +19,7 @@ export default function Page() {
   useEffect(() => {
     const reqData = async () =>  {
 
-      const req = await fetch('/api/controllers/services/yardslab/dashboard/ProjectItems', {
+      const req = await fetch('/api/controllers/cookies/cookieYardPassExist', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ export default function Page() {
                       <p className="text-slate-500  ">Gerenciador de Senhas e Cartões</p>
                     </div>
                     <div className="px-3 pb-4 text-center">
-                      <Link href="/comingsoon" className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 hover:bg-indigo-700 px-8 py-3 text-base font-medium text-white ">Acessar</Link>
+                      <Link href="/yardpass" className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 hover:bg-indigo-700 px-8 py-3 text-base font-medium text-white ">Acessar</Link>
                     </div>
                   </div>
                 </div>
