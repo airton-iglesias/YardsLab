@@ -43,7 +43,7 @@ export default function Page() {
                                     Nele, você poderá guardar senhas, cartões e muito mais. Tudo é armazenado na nuvem para que você tenha a garantia de que não irá perder as suas informações! 
                                     </p>
                                     <div className="text-cyan-400 hover:underline">
-                                        <Link href="./comingsoon">Ir para o projeto →</Link>
+                                        <Link href="./dashboard">Ir para o projeto →</Link>
                                     </div>
                                 </div>
                             </div>
