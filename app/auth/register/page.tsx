@@ -68,8 +68,8 @@ export default function Page() {
 
     return (
         <>
-            <section>
-                <div className="flex flex-col items-center mt-20 mb-5 px-6 mx-auto lg:py-0">
+            <section className=" flex-col">
+                <div className="flex flex-col items-center mt-20 mb-5 px-6 mx-auto lg:py-0 flex-grow">
                     <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 ">
                         <div className="absolute flex justify-center top-2 mt-3">
                             <Link href="/" className="hover:bg-blue-700 p-3 text-white bg-blue-600 rounded-lg">← Página Inicial</Link>
@@ -125,9 +125,6 @@ export default function Page() {
                 </div>
             </section>
             <CheckCookies/>
-            <div className="absolute inset-x-0 bottom-0">
-                <Footer/>
-            </div>
         </>
     );
 }
