@@ -186,32 +186,97 @@ export default function Header(pathname) {
                             </Menu>
                         )   }
                         
-                        <Disclosure as="nav" className="lg:hidden">
-                            {({ open }) => (
+                        {isLogged && yardPassAccountExist?
+                            (
                                 <>
-                                    <Disclosure.Button className="inline-flex z-10 items-center justify-center rounded-lg p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                                        {open ? (<XMarkIcon className="block h-6 w-6" aria-hidden="true" />) : (<Bars3Icon className="block h-6 w-6" aria-hidden="true" />)}
-                                    </Disclosure.Button>
-                                
-                                    <Disclosure.Panel className="absolute left-0 mt-4 w-full h-screen rounded-lg text-center bg-white text-gray-500 ">
-                                        <ul>
-                                            <li>
-                                                <Link href="/" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2 mt-5" aria-current="page">Início</Link>
-                                            </li>
-                                            <li className="">
-                                                <Link href="/sobre" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2">Sobre</Link>
-                                            </li>
-                                            <li>
-                                                <Link href="/projetos" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white">Projetos</Link>
-                                            </li>
-                                            <li>
-                                                <Link href="/dashboard" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white">Dashboard</Link>
-                                            </li>
-                                        </ul>
-                                    </Disclosure.Panel>
+                                    <Disclosure as="nav" className="lg:hidden">
+                                        {({ open }) => (
+                                            <>
+                                                <Disclosure.Button className="inline-flex z-10 items-center justify-center rounded-lg p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                                    {open ? (<XMarkIcon className="block h-6 w-6" aria-hidden="true" />) : (<Bars3Icon className="block h-6 w-6" aria-hidden="true" />)}
+                                                </Disclosure.Button>
+                                            
+                                                <Disclosure.Panel className="absolute left-0 mt-4 w-full h-screen rounded-lg text-center bg-white text-gray-500 ">
+                                                    <ul>
+                                                        <li>
+                                                            <Link href="/" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2 mt-5" aria-current="page">Início</Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link href="/sobre" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2">Sobre</Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link href="/projetos" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white">Projetos</Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link href="/dashboard" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white">Dashboard</Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link href="/yardpass" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white">YardPass</Link>
+                                                        </li>
+                                                    </ul>
+                                                </Disclosure.Panel>
+                                            </>
+                                        )}
+                                    </Disclosure>
                                 </>
-                            )}
-                        </Disclosure>
+                            ): 
+                            isLogged? (
+                                <>
+                                    <Disclosure as="nav" className="lg:hidden">
+                                        {({ open }) => (
+                                            <>
+                                                <Disclosure.Button className="inline-flex z-10 items-center justify-center rounded-lg p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                                    {open ? (<XMarkIcon className="block h-6 w-6" aria-hidden="true" />) : (<Bars3Icon className="block h-6 w-6" aria-hidden="true" />)}
+                                                </Disclosure.Button>
+                                            
+                                                <Disclosure.Panel className="absolute left-0 mt-4 w-full h-screen rounded-lg text-center bg-white text-gray-500 ">
+                                                    <ul>
+                                                        <li>
+                                                            <Link href="/" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2 mt-5" aria-current="page">Início</Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link href="/sobre" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2">Sobre</Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link href="/projetos" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white">Projetos</Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link href="/dashboard" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white">Dashboard</Link>
+                                                        </li>
+                                                    </ul>
+                                                </Disclosure.Panel>
+                                            </>
+                                        )}
+                                    </Disclosure>
+                                </>
+                            ):(
+                                <>
+                                    <Disclosure as="nav" className="lg:hidden">
+                                        {({ open }) => (
+                                            <>
+                                                <Disclosure.Button className="inline-flex z-10 items-center justify-center rounded-lg p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                                    {open ? (<XMarkIcon className="block h-6 w-6" aria-hidden="true" />) : (<Bars3Icon className="block h-6 w-6" aria-hidden="true" />)}
+                                                </Disclosure.Button>
+                                            
+                                                <Disclosure.Panel className="absolute left-0 mt-4 w-full h-screen rounded-lg text-center bg-white text-gray-500 ">
+                                                    <ul>
+                                                        <li>
+                                                            <Link href="/" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2 mt-5" aria-current="page">Início</Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link href="/sobre" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2">Sobre</Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link href="/projetos" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white">Projetos</Link>
+                                                        </li>
+                                                    </ul>
+                                                </Disclosure.Panel>
+                                            </>
+                                        )}
+                                    </Disclosure>
+                                </>
+                            ) 
+                        }
                     </div>
 
                 </div>
