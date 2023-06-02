@@ -1,10 +1,9 @@
 "use client";
-import Footer from '../../components/footer';
 import React, { useState } from 'react';
 import CheckCookies from "../../components/checkCookies";
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 export default function Page() {
     const router = useRouter();
@@ -54,17 +53,6 @@ export default function Page() {
             setSubmitButton(true);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
 
     return (
         <>

@@ -3,9 +3,6 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
-
-
-import Footer from '../../components/footer';
 import CheckCookies from "../../components/checkCookies";
 
 
@@ -62,7 +59,7 @@ export default function Page() {
     return (
         <>  
             <Toaster containerStyle={{ position: 'absolute' }}/>
-
+            
             <section>
                 <div className="flex flex-col items-center mt-40 px-6 mx-auto lg:py-0">
                     <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 ">

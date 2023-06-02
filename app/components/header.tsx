@@ -4,48 +4,45 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { GlobalContext } from '../context/GlobalContext';
-
-const navegation = [
-    { name: 'Início', href: '/', current: true},
-    { name: 'Sobre', href: '/sobre', current: false},
-    { name: 'Projetos', href: '/projetos', current: false},
-]
-const navegationLogged = [
-    { name: 'Início', href: '/', current: true},
-    { name: 'Sobre', href: '/sobre', current: false},
-    { name: 'Projetos', href: '/projetos', current: false},
-    { name: 'Dashboard', href: '/dashboard', current: false},
-]
-
-const navegationWithYardPass = [
-    { name: 'Início', href: '/', current: true},
-    { name: 'Sobre', href: '/sobre', current: false},
-    { name: 'Projetos', href: '/projetos', current: false},
-    { name: 'Dashboard', href: '/dashboard', current: false},
-    { name: 'YardPass', href: '/yardpass', current: false},
-]
-
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
+const navegation = [
+    { name: 'Início', href: '/',},
+    { name: 'Sobre', href: '/sobre',},
+    { name: 'Projetos', href: '/projetos', },
+]
+const navegationLogged = [
+    { name: 'Início', href: '/', },
+    { name: 'Sobre', href: '/sobre', },
+    { name: 'Projetos', href: '/projetos', },
+    { name: 'Dashboard', href: '/dashboard',},
+]
+const navegationWithYardPass = [
+    { name: 'Início', href: '/',},
+    { name: 'Sobre', href: '/sobre',},
+    { name: 'Projetos', href: '/projetos',},
+    { name: 'Dashboard', href: '/dashboard',},
+    { name: 'YardPass', href: '/yardpass'},
+]
+
 export default function Header(pathname) {
 
-    const [dashboardPath, setDashboardPath] = useState(false);
+    const [yardPassPath, setYardPassPathPath] = useState(false);
     const router = useRouter();
-
     const { isLogged, yardPassAccountExist,setIsLoggedTrue, setIsLoggedFalse} = useContext(GlobalContext);
     
 
     useEffect(() => {
-        if(pathname.pathname === "/dashboard"){
-            setDashboardPath(true)
+        if(pathname.pathname === "/yardpass"){
+            setYardPassPathPath(true)
         }
         else{
-            setDashboardPath(false)
+            setYardPassPathPath(false)
         }
 
     }, []);
@@ -113,35 +110,8 @@ export default function Header(pathname) {
                             )}
                         </ul>
                     </div>
-
+                    
                     <div className="flex items-center lg:order-2">
-                        {dashboardPath ? (
-                            <Disclosure as="nav" className="lg:hidden">
-                                {({ open }) => (
-                                    <>
-                                        <Disclosure.Button className="inline-flex z-10 items-center justify-center rounded-lg p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                                            {open ? (<XMarkIcon className="block h-6 w-6" aria-hidden="true" />) : 
-                                                (<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                </svg>
-                                            )}
-                                        </Disclosure.Button>
-                                    
-                                        <Disclosure.Panel className="absolute left-0 mt-4 w-full h-screen rounded-lg text-center bg-white text-gray-500">
-                                            <ul>
-                                                <li>
-                                                    <Link href="/" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2 mt-5" aria-current="page">Início</Link>
-                                                </li>
-                                                <li className="">
-                                                    <Link href="./sobre" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2">Senhas</Link>
-                                                </li>
-                                            </ul>
-                                        </Disclosure.Panel>
-                                    </>
-                                )}
-                            </Disclosure>  
-                        ):(<></>)}
-
                         {isLogged ? 
                         (
                             <Menu as="div" className="relative p-2 text-gray-500 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -198,21 +168,12 @@ export default function Header(pathname) {
                                             
                                                 <Disclosure.Panel className="absolute left-0 mt-4 w-full h-screen rounded-lg text-center bg-white text-gray-500 ">
                                                     <ul>
-                                                        <li>
-                                                            <Link href="/" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2 mt-5" aria-current="page">Início</Link>
-                                                        </li>
-                                                        <li>
-                                                            <Link href="/sobre" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2">Sobre</Link>
-                                                        </li>
-                                                        <li>
-                                                            <Link href="/projetos" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white">Projetos</Link>
-                                                        </li>
-                                                        <li>
-                                                            <Link href="/dashboard" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white">Dashboard</Link>
-                                                        </li>
-                                                        <li>
-                                                            <Link href="/yardpass" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white">YardPass</Link>
-                                                        </li>
+                                                        {navegationWithYardPass.map((item) => (
+                                                            <li  key={item.name}>
+                                                                <Link href={item.href} className={"block w-full h-14 py-4 hover:bg-gray-700 hover:text-white"}  
+                                                                >{item.name}</Link>
+                                                            </li>))
+                                                        }
                                                     </ul>
                                                 </Disclosure.Panel>
                                             </>
@@ -231,18 +192,11 @@ export default function Header(pathname) {
                                             
                                                 <Disclosure.Panel className="absolute left-0 mt-4 w-full h-screen rounded-lg text-center bg-white text-gray-500 ">
                                                     <ul>
-                                                        <li>
-                                                            <Link href="/" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2 mt-5" aria-current="page">Início</Link>
-                                                        </li>
-                                                        <li>
-                                                            <Link href="/sobre" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2">Sobre</Link>
-                                                        </li>
-                                                        <li>
-                                                            <Link href="/projetos" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white">Projetos</Link>
-                                                        </li>
-                                                        <li>
-                                                            <Link href="/dashboard" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white">Dashboard</Link>
-                                                        </li>
+                                                        {navegationLogged.map((item) => (
+                                                            <li  key={item.name}>
+                                                                <Link href={item.href} className={"block w-full h-14 py-4 hover:bg-gray-700 hover:text-white"}>{item.name}</Link>
+                                                            </li>))
+                                                        }
                                                     </ul>
                                                 </Disclosure.Panel>
                                             </>
@@ -260,15 +214,11 @@ export default function Header(pathname) {
                                             
                                                 <Disclosure.Panel className="absolute left-0 mt-4 w-full h-screen rounded-lg text-center bg-white text-gray-500 ">
                                                     <ul>
-                                                        <li>
-                                                            <Link href="/" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2 mt-5" aria-current="page">Início</Link>
-                                                        </li>
-                                                        <li>
-                                                            <Link href="/sobre" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white mb-2">Sobre</Link>
-                                                        </li>
-                                                        <li>
-                                                            <Link href="/projetos" className="block w-full h-14 py-4 hover:bg-gray-700 hover:text-white">Projetos</Link>
-                                                        </li>
+                                                        {navegation.map((item) => (
+                                                            <li  key={item.name}>
+                                                                <Link href={item.href} className={"block w-full h-14 py-4 hover:bg-gray-700 hover:text-white"}>{item.name}</Link>
+                                                            </li>))
+                                                        }
                                                     </ul>
                                                 </Disclosure.Panel>
                                             </>

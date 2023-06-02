@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import Asidebaraccount from "../components/asidebar-Account";
 import CheckCookies from "../components/checkCookies";
 import Link from 'next/link';
 import Header from '../components/header';
