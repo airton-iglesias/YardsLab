@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
           });
           cookies().set({
             name: 'yardPass',
-            value: `${query.yardPassAccount}`,
+            value: `${query.yardPass_Account}`,
             expires: expirationDate,
             httpOnly: true,
             path: '/',
@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
           });
           cookies().set({
             name: 'yardPass',
-            value: `${query.yardPassAccount}`,
+            value: `${query.yardPass_Account}`,
             expires: expirationDate,
             httpOnly: true,
             path: '/',

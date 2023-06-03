@@ -18,13 +18,13 @@ export async function POST(req: NextRequest) {
             id: parseInt(userID.value),
           },
         data: {
-            yardPassAccount: 'TRUE'
+            yardPass_Account: 'TRUE'
         },
     });
 
     const queryCreate = await prisma.yardPass.create({
         data: {
-            userId: parseInt(userID.value),
+            user_Id: parseInt(userID.value),
             password: body.password,
         },
     });

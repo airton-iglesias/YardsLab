@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
         name: body.nome,
         password: body.password,
         isPremium: 'USER',
-        yardPassAccount: 'FALSE'
+        yardPass_Account: 'FALSE'
       },
     });
 

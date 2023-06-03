@@ -17,8 +17,9 @@ export default function Page() {
                   <h1 className="text-3xl font-bold text-white">Olá, eu sou o 
                     <span className="bg-gradient-to-br from-sky-500 to-cyan-400 bg-clip-text text-transparent"> Airton!</span> 👋
                   </h1>
-                  <p className="mt-6 text-xl leading-9 text-white">Atualmente, programo aplicações FullStacks para <span className="text-cyan-400">Web</span>, <span className="text-cyan-400">Mobile</span> e <span className="text-cyan-400">Desktop</span>.
-                  Busco formas para sempre aprimorar o meu conhecimento com os projetos que crio. YardsLab é como chamo esse espaço e <span className="text-cyan-400">espero que goste do que irá encontrar aqui!</span>
+                  <p className="mt-6 text-xl leading-9 text-white">Sou um desenvolvedor <span className="text-cyan-400">FullStack </span>
+                    apaixonado por criar soluções inovadoras. Com minhas habilidades, transformo desafios em código funcional. 
+                    YardsLab é como chamo esse espaço e <span className="text-cyan-400">espero que goste do que irá encontrar aqui!</span>
                   </p>
                   <div className="mt-12 w-36 h-10">
                     <Link className="w-full h-full p-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md font-medium" href="https://wa.me/5592991920999">Me Contrate →</Link>
