@@ -4,6 +4,8 @@ import { toast } from "react-hot-toast";
 export default function PasswordDelConfirm({setShowDelConfirmPopUp, itemID}){
     const [submitButton, setSubmitButton] = useState(true);
 
+    console.log(itemID)
+
     const delPassword = async (e) =>{
         e.preventDefault();
         setSubmitButton(false);
@@ -15,13 +17,13 @@ export default function PasswordDelConfirm({setShowDelConfirmPopUp, itemID}){
                 },
                 body: JSON.stringify({
                     itemID: itemID,
-                    parameter: "deletePasswords",
+                    parameter: "deletePassword",
                 })
             });
             
             const data = await res.json();
 
-            if (data.message == "success"){
+            if (data.message == "sucess"){
                 window.location.reload();
                 setInterval(() => {setSubmitButton(true)}, 1000);
             }
@@ -64,7 +66,7 @@ export default function PasswordDelConfirm({setShowDelConfirmPopUp, itemID}){
                             <div className="text-center w-full">
                                 {submitButton ? (
                                         <>
-                                            <button onClick={delPassword} type="submit" className="w-32 mx-3 text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center h-12">Confirmar</button>
+                                            <button onClick={delPassword} type="submit" className="w-32 mx-3 text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center h-12">Confirmar</button>
                                             <button onClick={() => setShowDelConfirmPopUp(false)} type="submit" className="w-32 mx-3 text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center h-12">Cancelar</button>
                                         </>    
                                     ):(

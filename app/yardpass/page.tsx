@@ -7,22 +7,30 @@ import PasswordCard from "../components/passwordCard";
 import PasswordAdd from "../components/passwordAdd";
 import { toast } from 'react-hot-toast';
 import { GlobalContext } from '../context/GlobalContext';
+import CardBank from "../components/cardBank";
 
 
 export default function Page() {
-  const {passwordsData} = useContext(GlobalContext);
+  const {passwordsData, cardBankData} = useContext(GlobalContext);
   const [havePasswords, setHavePasswords] = useState(false);
   const [passwordAddPopUp, setPasswordAddPopUp] = useState(false);
-  const [passwordDeletePopUp, setPasswordDeletePopUp] = useState(false);
+  const [filterRenderPasswords, setFilterRenderPasswords] = useState("All");
+  const [haveCardBank, setHaveCardBank] = useState(false);
 
   const setAddItemFalse = () => {
     setPasswordAddPopUp(false)
   }
 
-  
   useEffect(() => {
-    setHavePasswords(!!passwordsData[0]?.id);
-  }, [passwordsData]);
+    if (!!passwordsData[0]?.id && haveCardBank[0]?.id){
+      setHavePasswords(!!passwordsData[0]?.id);
+      setHaveCardBank(!!haveCardBank[0]?.id);
+    }
+    else{
+      setHaveCardBank(true)
+      setHavePasswords(false)
+    }
+  }, [passwordsData, haveCardBank]);
 
   return (
     <> 
@@ -40,7 +48,7 @@ export default function Page() {
       }
 
       <div>
-        <Asidebaraccount/>
+        <Asidebaraccount setFilterRenderPasswords={setFilterRenderPasswords}/>
       </div>
       <section>
         <div className=" pr-3 ml-0 mt-20 w-max-screen px-3 py-6  lg:ml-80 lg:pr-[30px]">
@@ -62,12 +70,68 @@ export default function Page() {
           </div>
           <div className="relative grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 min-w-[100%] max-w-[100%]">
             {havePasswords ? (
+              filterRenderPasswords == "Passwords" ? 
+                (
                 passwordsData.map(item => (
-                  <PasswordCard key={item.id} id={item.id} name={item.website} login={item.username} senha={item.password}/>
-                ))
-              )
-              :(
-                <></>)
+                  <div key={item.id}>
+                    <PasswordCard Key={item.id} id={item.id} name={item.website} login={item.username} senha={item.password}/>
+                  </div>
+                ))):
+                filterRenderPasswords == "CardBank" ? 
+                (
+                  cardBankData.map(item => (
+                  <div key={item.id}>
+                    <CardBank Key={item.id} id={item.id} username={item.username} card_name={item.card_name} card_number={item.card_number} card_date={item.card_date} card_security={item.card_security}/>
+                  </div>
+                ))):
+                filterRenderPasswords == "All" ? 
+                (
+                  <>
+                    {passwordsData.map(item => (
+                      <div key={item.id}>
+                        <PasswordCard Key={item.id} id={item.id} name={item.website} login={item.username} senha={item.password}/>
+                      </div>
+                    ))}
+
+                    {cardBankData.map(item => (
+                      <div key={item.id}>
+                        <CardBank Key={item.id} id={item.id} username={item.username} card_name={item.card_name} card_number={item.card_number} card_date={item.card_date} card_security={item.card_security}/>
+                      </div>
+                    ))}
+                  </>
+                ):(<></>)):(<></>)
+            }
+            {haveCardBank ? (
+              filterRenderPasswords == "Passwords" ? 
+                (
+                passwordsData.map(item => (
+                  <div key={item.id}>
+                    <PasswordCard Key={item.id} id={item.id} name={item.website} login={item.username} senha={item.password}/>
+                  </div>
+                ))):
+                filterRenderPasswords == "CardBank" ? 
+                (
+                  cardBankData.map(item => (
+                  <div key={item.id}>
+                    <CardBank Key={item.id} id={item.id} username={item.username} card_name={item.card_name} card_number={item.card_number} card_date={item.card_date} card_security={item.card_security}/>
+                  </div>
+                ))):
+                filterRenderPasswords == "All" ? 
+                (
+                  <>
+                    {passwordsData.map(item => (
+                      <div key={item.id}>
+                        <PasswordCard Key={item.id} id={item.id} name={item.website} login={item.username} senha={item.password}/>
+                      </div>
+                    ))}
+
+                    {cardBankData.map(item => (
+                      <div key={item.id}>
+                        <CardBank Key={item.id} id={item.id} username={item.username} card_name={item.card_name} card_number={item.card_number} card_date={item.card_date} card_security={item.card_security}/>
+                      </div>
+                    ))}
+                  </>
+                ):(<></>)):(<></>)
             }
           </div>
         </div>

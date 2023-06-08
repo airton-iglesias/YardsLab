@@ -14,7 +14,7 @@ export default function PasswordEdit({setShowEditPopUp, item}){
         setSubmitButton(false);
 
         try{
-            const res = await fetch('/api/controllers/services/yardpass/passwords/editPassword', {
+            const res = await fetch('/api/controllers/services/yardpass/passwords', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -24,12 +24,13 @@ export default function PasswordEdit({setShowEditPopUp, item}){
                     website: inputWebsite,
                     login: inputLogin,
                     password: inputSenha,
+                    parameter: "editPasswords",
                 })
             });
             
             const data = await res.json();
 
-            if (data.message == "sucess"){
+            if (data.message == "success"){
                 setSubmitButton(false);
                 setShowEditPopUp();
                 window.location.reload();

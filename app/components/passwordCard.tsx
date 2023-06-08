@@ -19,7 +19,7 @@ export default function PasswordCard(item){
             
             <div>
                 <div className="flex items-center mx-auto lg:py-0">
-                    <div className="flex w-[28rem] bg-white rounded-lg shadow ">
+                    <div className="flex w-[28rem] h-[18.2rem] bg-white rounded-lg shadow ">
                         <div className="w-full space-y-6 p-8 relative">
                             <div className="text-center mb-6 text-2xl font-semibold text-gray-900 ">
                                 {item.name}

@@ -8,75 +8,93 @@ interface IUserContext {
     setIsLoggedTrue: Function;
     setIsLoggedFalse: Function;
     passwordsData: any;
+    cardBankData: any;
   }
 
-export const GlobalContext = createContext<IUserContext>({isLogged: false, yardPassAccountExist: false, setIsLoggedTrue: Function, setIsLoggedFalse: Function, passwordsData: JSON});
+export const GlobalContext = createContext<IUserContext>({isLogged: false,cardBankData: JSON, yardPassAccountExist: false, setIsLoggedTrue: Function, setIsLoggedFalse: Function, passwordsData: JSON});
 
 
 export default function GlobalProvider({children}){
     const [isLogged, setIsLogged] = useState(false);
     const [yardPassAccountExist, setYardPassAccountExist] = useState(false);
-    const [passwordsData, setPasswordsData] = useState({});
+    const [passwordsData, setPasswordsData] = useState([]);
+    const [cardBankData, setCardBankData] = useState([])
 
     useEffect(() => {
-        if (isLogged === false){
-            const reqData = async () =>  {
-                const queryLoginCookie = await fetch('/api/controllers/cookies/cookieLoginExist', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                })
-
-                const dataLoginCookie = await queryLoginCookie.json();
-
-                if(dataLoginCookie.message == "cookieExist"){
-                    setIsLogged(true);
-                }
-                else if(dataLoginCookie.message == "NotExist"){
-                    setIsLogged(false);
-                }
-
-                const queryYardpassCookie = await fetch('/api/controllers/cookies/cookieYardPassExist', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                })
-
-                const dataYardpassCookie = await queryYardpassCookie.json();
-
-                if(dataYardpassCookie.message == "TRUE"){
-                    setYardPassAccountExist(true);
-                }
-                else if(dataYardpassCookie.message == "FALSE"){
-                    setYardPassAccountExist(false);
-                }
-
+        if (!isLogged) {
+          const reqData = async () => {
+            try {
+              const queryLoginCookie = await fetch('/api/controllers/cookies/cookieLoginExist', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              });
+      
+              const dataLoginCookie = await queryLoginCookie.json();
+      
+              if (dataLoginCookie.message === 'cookieExist') {
+                setIsLogged(true);
+              } else if (dataLoginCookie.message === 'NotExist') {
+                setIsLogged(false);
+              }
+      
+              const queryYardpassCookie = await fetch('/api/controllers/cookies/cookieYardPassExist', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              });
+      
+              const dataYardpassCookie = await queryYardpassCookie.json();
+      
+              if (dataYardpassCookie.message === 'TRUE') {
+                setYardPassAccountExist(true);
+              } else if (dataYardpassCookie.message === 'FALSE') {
+                setYardPassAccountExist(false);
+              }
+            } catch (error) {
+              console.error('Erro na requisição:', error);
             }
-                
-            reqData()
+          };
+      
+          reqData();
         }
-
-    }, []);
-
+    }, [isLogged]);
+      
     useEffect(() => {
-        if(isLogged){
-            const reqYardPassPasswords = async () => {
-                const QueryYardPassPasswords = await fetch('/api/controllers/services/yardpass/passwords/getPasswords', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                })
-                const YardPassPasswordsData = await QueryYardPassPasswords.json();
-                setPasswordsData(YardPassPasswordsData);
-            }
+      if (yardPassAccountExist) {
+        const reqYardPassPasswords = async () => {
+          try {
+            const response = await fetch('/api/controllers/services/yardpass/passwords', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                parameter: 'getPasswords',
+              }),
+            });
     
-            reqYardPassPasswords()
-        }
-    }, [yardPassAccountExist])
+            if (response.ok) {
+              const yardPassPasswordsData = await response.json();
 
+              setPasswordsData(yardPassPasswordsData[0].YardPassPasswords);
+              setCardBankData(yardPassPasswordsData[0].YardPassPayments);
+
+            } else {
+              console.error('Erro na requisição:', response.status, response.statusText);
+            }
+          } catch (error) {
+            console.error('Erro na requisição:', error);
+          }
+        };
+    
+        reqYardPassPasswords();
+      }
+    }, [yardPassAccountExist]);
+    
+      
     const setIsLoggedTrue = () => {
         setIsLogged(true);
       };
@@ -86,7 +104,7 @@ export default function GlobalProvider({children}){
       };
 
     return(
-        <GlobalContext.Provider value={{isLogged, yardPassAccountExist, setIsLoggedTrue, setIsLoggedFalse, passwordsData}}>
+        <GlobalContext.Provider value={{isLogged, yardPassAccountExist, setIsLoggedTrue, setIsLoggedFalse, passwordsData, cardBankData}}>
             {children}
         </GlobalContext.Provider>
     )

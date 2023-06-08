@@ -2,11 +2,9 @@
 import Link from "next/link";
 import React, { useState } from "react";
 
-export default function asidebaraccount(){
+export default function asidebaraccount({setFilterRenderPasswords}){
 
     const [premiumPopup, setPremiumPopup] = useState(false); 
-
-
 
     return(
         <>
@@ -19,32 +17,32 @@ export default function asidebaraccount(){
                 </Link>
                 <div className="border-t border-gray-300 pt-2 mt-3 mx-auto w-56"></div>
                 <ul className="mb-2 items-center gap-4 p-4 pt-0 text-lg font-semibold">
-                    <li className="mb-2 mx-auto w-56">
-                        <Link className="inline-flex hover:bg-gray-300 rounded-md p-2 w-full" href="/dashboard"> 
+                    <li onClick={() => setFilterRenderPasswords("All")} className="mb-2 mx-auto w-56">
+                        <a className="inline-flex hover:bg-gray-300 rounded-md p-2 w-full"> 
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 mt-0.5 mr-2">
                             <path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" />
                             <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" />
                         </svg>
                             Início
-                        </Link>
+                        </a>
                     </li>
                     <div className="border-t border-gray-300 pt-2 mx-auto w-56"></div>
                     <li className="mb-2 mx-auto w-56">
-                        <Link className="inline-flex hover:bg-gray-300 rounded-md p-2 w-full" href="/comingsoon"> 
+                        <a onClick={() => setFilterRenderPasswords("Passwords")} className="inline-flex hover:bg-gray-300 rounded-md p-2 w-full"> 
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 mt-1 mr-2">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />
                             </svg>
                             Senhas
-                        </Link>
+                        </a>
                     </li>
                     <li className="mb-2 mx-auto w-56">
-                        <Link className="inline-flex hover:bg-gray-300 rounded-md p-2 w-full" href="/comingsoon"> 
+                        <a onClick={() => setFilterRenderPasswords("CardBank")} className="inline-flex hover:bg-gray-300 rounded-md p-2 w-full"> 
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 mt-1 mr-2">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
                             </svg>
 
                             Cartões
-                        </Link>
+                        </a>
                     </li>                    
                 </ul>
 
