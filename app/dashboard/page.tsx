@@ -40,14 +40,14 @@ export default function Page() {
 
   return (
     <> 
-      <div className="fixed top-0 z-[30]">
+      <div className="fixed top-0">
         <Header pathname="/dashboard" />
       </div>
 
       {addItem ? (
-        <>
+        <div className="absolute z-10">
           <ServiceAdd setAddItemFalse={setAddItemFalse}/>
-        </>):(<></>)
+        </div>):(<></>)
       }
 
       <section>
@@ -67,7 +67,7 @@ export default function Page() {
               <div className="text-base"></div>
             </div>
           </div>
-          <div className="relative grid grid-cols-1 gap-6 lg:grid-cols-4 min-w-[100%] max-w-[100%]">
+          <div className="relative grid grid-cols-1 gap-6 lg:grid-cols-4 min-w-[100%] max-w-[100%] z-5">
             {yardPass ? (
               <>
                 <div className="shadow-sm shadow-neutral-700 lg:w-[100%] xl:w-[80%]">

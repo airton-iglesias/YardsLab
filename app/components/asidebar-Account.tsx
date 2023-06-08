@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 export default function asidebaraccount(){
 
-    const [premiumPopup, setPremiumPopup] = useState(true); 
+    const [premiumPopup, setPremiumPopup] = useState(false); 
 
 
 

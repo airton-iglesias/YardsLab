@@ -7,14 +7,16 @@ interface IUserContext {
     yardPassAccountExist: boolean,
     setIsLoggedTrue: Function;
     setIsLoggedFalse: Function;
+    passwordsData: any;
   }
 
-export const GlobalContext = createContext<IUserContext>({isLogged: false, yardPassAccountExist: false, setIsLoggedTrue: Function, setIsLoggedFalse: Function});
+export const GlobalContext = createContext<IUserContext>({isLogged: false, yardPassAccountExist: false, setIsLoggedTrue: Function, setIsLoggedFalse: Function, passwordsData: JSON});
 
 
 export default function GlobalProvider({children}){
     const [isLogged, setIsLogged] = useState(false);
     const [yardPassAccountExist, setYardPassAccountExist] = useState(false);
+    const [passwordsData, setPasswordsData] = useState({});
 
     useEffect(() => {
         if (isLogged === false){
@@ -26,14 +28,13 @@ export default function GlobalProvider({children}){
                     },
                 })
 
-
                 const dataLoginCookie = await queryLoginCookie.json();
 
                 if(dataLoginCookie.message == "cookieExist"){
-                    setIsLogged(true)
+                    setIsLogged(true);
                 }
                 else if(dataLoginCookie.message == "NotExist"){
-                    setIsLogged(false) 
+                    setIsLogged(false);
                 }
 
                 const queryYardpassCookie = await fetch('/api/controllers/cookies/cookieYardPassExist', {
@@ -46,12 +47,11 @@ export default function GlobalProvider({children}){
                 const dataYardpassCookie = await queryYardpassCookie.json();
 
                 if(dataYardpassCookie.message == "TRUE"){
-                    setYardPassAccountExist(true)
+                    setYardPassAccountExist(true);
                 }
                 else if(dataYardpassCookie.message == "FALSE"){
-                    setYardPassAccountExist(false) 
+                    setYardPassAccountExist(false);
                 }
-
 
             }
                 
@@ -59,6 +59,23 @@ export default function GlobalProvider({children}){
         }
 
     }, []);
+
+    useEffect(() => {
+        if(isLogged){
+            const reqYardPassPasswords = async () => {
+                const QueryYardPassPasswords = await fetch('/api/controllers/services/yardpass/passwords/getPasswords', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                const YardPassPasswordsData = await QueryYardPassPasswords.json();
+                setPasswordsData(YardPassPasswordsData);
+            }
+    
+            reqYardPassPasswords()
+        }
+    }, [yardPassAccountExist])
 
     const setIsLoggedTrue = () => {
         setIsLogged(true);
@@ -69,7 +86,7 @@ export default function GlobalProvider({children}){
       };
 
     return(
-        <GlobalContext.Provider value={{isLogged, yardPassAccountExist, setIsLoggedTrue, setIsLoggedFalse}}>
+        <GlobalContext.Provider value={{isLogged, yardPassAccountExist, setIsLoggedTrue, setIsLoggedFalse, passwordsData}}>
             {children}
         </GlobalContext.Provider>
     )

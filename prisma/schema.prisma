@@ -25,9 +25,9 @@ model Users {
   isPremium        Premium  @default(USER)
   validity_Premium  String?  @db.VarChar(10)
 
-  yardpassuservault YardPass?
-  yardpassuserpasswords YardPassPasswords?
-  yardpassuserpayments YardPassPayments?
+  YardPass YardPass?
+  YardPassPassword YardPassPasswords?
+  YardPassPayments YardPassPayments?
 }
 
 enum Sexo {
