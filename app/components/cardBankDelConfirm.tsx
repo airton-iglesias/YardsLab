@@ -10,20 +10,20 @@ export default function PasswordDelConfirm({setShowDelConfirmPopUp, itemID}){
         e.preventDefault();
         setSubmitButton(false);
         try{
-            const res = await fetch('/api/controllers/services/yardpass/passwords', {
+            const res = await fetch('/api/controllers/services/yardpass/cardBank', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                     itemID: itemID,
-                    parameter: "deletePassword",
+                    parameter: "deleteCardBank",
                 })
             });
             
             const data = await res.json();
 
-            if (data.message == "sucess"){
+            if (data.message == "success"){
                 window.location.reload();
                 setInterval(() => {setSubmitButton(true)}, 1000);
             }

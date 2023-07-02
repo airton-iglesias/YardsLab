@@ -53,7 +53,7 @@ export default function PasswordEdit({setShowEditPopUp, item}){
                     <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 ">
                         <div className="p-8 space-y-6 relative">
                             <div className="flex items-center justify-center mb-6 text-2xl font-semibold text-gray-900 ">
-                                Adicionar
+                                Editar Senha
                             </div>
                             <button onClick={() => setShowEditPopUp(false)} className="absolute top-[-20px] mr-[4px] right-0 w-7 h-7 text-white hover:bg-slate-300 rounded-lg">
                                 <svg className="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="black">

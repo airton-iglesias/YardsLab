@@ -12,48 +12,38 @@ export async function POST(req: NextRequest) {
     const itemID = body.itemID;
     const parameter = body.parameter;
 
-
-    if (parameter == "getCardBank") {
-      const query = await prisma.users.findMany({
-        where: {
-          id: parseInt(userID)
-        },
-        include: {
-          YardPassPasswords: true,
-          YardPassPayments: true,
-        },
-      });
-
-      return NextResponse.json(query)
-    } 
-    else if (parameter == "editCardBank") {
-      const query = await prisma.yardPassPasswords.update({
+    if (parameter == "editCardBank") {
+      const query = await prisma.yardPassPayments.update({
         where: {
           id: parseInt(itemID),
         },
         data: {
-          website: body.website,
-          username: body.login,
-          password: body.password,
+          username: body.username,
+          card_name: body.card_name,
+          card_number: body.card_number,
+          card_date: body.card_date,
+          card_security: body.card_security,
         }
       });
 
       return NextResponse.json({ message: "success" });
     } 
     else if (parameter == "insertCardBank") {
-      const query = await prisma.yardPassPasswords.create({
+      const query = await prisma.yardPassPayments.create({
         data: {
           user_Id: parseInt(userID),
-          website: body.website,
-          username: body.login,
-          password: body.password
+          username: body.cardUsername,
+          card_name: body.cardName,
+          card_number: body.cardNumber,
+          card_date: body.cardDate,
+          card_security: body.cardSecurity,
         },
       });
 
       return NextResponse.json({ message: "success" });
     } 
     else if (parameter == "deleteCardBank") {
-      const query = await prisma.yardPassPasswords.delete({
+      const query = await prisma.yardPassPayments.delete({
         where: {
           id: parseInt(itemID),
         },

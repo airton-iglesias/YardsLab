@@ -4,11 +4,11 @@ import { toast } from "react-hot-toast";
 
 export default function PasswordEdit({setShowEditPopUp, item}){
     const [submitButton, setSubmitButton] = useState(true);
-    const [inputCardUsername, setInputCardUsername] = useState(item.username);
-    const [inputCardName, setInputCardName] = useState(item.card_name);
-    const [inputCardNumber, setInputCardNumber] = useState(item.card_number);
-    const [inputCardDate, setInputCardDate] = useState(item.card_date);
-    const [inputCardSecurity, setInputCardSecurity] = useState(item.card_security);
+    const [inputCardUsername, setInputCardUsername] = useState(item.name);
+    const [inputCardName, setInputCardName] = useState(item.login);
+    const [inputCardNumber, setInputCardNumber] = useState(item.senha);
+    const [inputCardDate, setInputCardDate] = useState(item.senha);
+    const [inputCardSecurity, setInputCardSecurity] = useState(item.senha);
     const [showPassword, setShowPassword] = useState(true);
 
     const addPassword = async (e) =>{
@@ -16,7 +16,7 @@ export default function PasswordEdit({setShowEditPopUp, item}){
         setSubmitButton(false);
 
         try{
-            const res = await fetch('/api/controllers/services/yardpass/cardBank', {
+            const res = await fetch('/api/controllers/services/yardpass/passwords/cardBank', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ export default function PasswordEdit({setShowEditPopUp, item}){
             
             const data = await res.json();
 
-            if (data.message == "success"){
+            if (data.message == "sucess"){
                 setSubmitButton(false);
                 setShowEditPopUp();
                 window.location.reload();
@@ -53,11 +53,11 @@ export default function PasswordEdit({setShowEditPopUp, item}){
     return(
         <>
             <section className="fixed w-full top-0 left-0 h-full bg-gray-500/50 z-30">
-                <div className="flex flex-col items-center mt-12 px-6 mx-auto lg:py-0">
+                <div className="flex flex-col items-center mt-40 px-6 mx-auto lg:py-0">
                     <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 ">
                         <div className="p-8 space-y-6 relative">
                             <div className="flex items-center justify-center mb-6 text-2xl font-semibold text-gray-900 ">
-                                Editar Cartão
+                                Adicionar
                             </div>
                             <button onClick={() => setShowEditPopUp(false)} className="absolute top-[-20px] mr-[4px] right-0 w-7 h-7 text-white hover:bg-slate-300 rounded-lg">
                                 <svg className="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="black">
@@ -66,26 +66,35 @@ export default function PasswordEdit({setShowEditPopUp, item}){
                             </button>
                             <form className="space-y-6" onSubmit={addPassword}>
                                 <div>
-                                    <label className="block mb-2 text-sm font-medium text-gray-900 ">Digite o apelido do cartão</label>
+                                    <label className="block mb-2 text-sm font-medium text-gray-900 ">Digite o nome do website</label>
                                     <input type="text" onChange={(e) => setInputCardUsername(e.target.value)} value={inputCardUsername} className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"/>
                                 </div>
                                 <div>
-                                    <label className="block mb-2 text-sm font-medium text-gray-900 ">Digite o seu nome completo</label>
+                                    <label className="block mb-2 text-sm font-medium text-gray-900 ">Digite o seu login/email</label>
                                     <input type="text" onChange={(e) => setInputCardName(e.target.value)} value={inputCardName} className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"/>
                                 </div>
                                 <div>
-                                    <label className="block mb-2 text-sm font-medium text-gray-900 ">Digite o número do cartão</label>
-                                    <input type="text" onChange={(e) => setInputCardNumber(e.target.value)} value={inputCardNumber} className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"/>
-                                </div>
-                                <div>
-                                    <label className="block mb-2 text-sm font-medium text-gray-900 ">Digite a data de validade do cartão</label>
-                                    <input type="text" onChange={(e) => setInputCardDate(e.target.value)} value={inputCardDate} className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"/>
-                                </div>
-                                <div>
-                                    <label className="block mb-2 text-sm font-medium text-gray-900">Digite o CVV</label>
-                                    <input type="text" onChange={(e) => setInputCardSecurity(e.target.value)} value={inputCardSecurity} className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"/>
-                                </div>
+                                    <label className="block mb-2 text-sm font-medium text-gray-900 ">Digite a sua senha</label>
+                                    <input type={showPassword ? 'password' : 'text'} onChange={(e) => setInputCardNumber(e.target.value)} value={inputCardNumber} className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"/>
+                                    {showPassword ? (
+                                        <>
+                                            <svg onClick={() => setShowPassword(false)} className="absolute flex right-10 bottom-28 cursor-pointer w-8 h-8 hover:bg-gray-400 rounded-full p-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
+                                                <path fillRule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z" clipRule="evenodd" />
+                                            </svg>
 
+                                        </>
+                                    ):
+                                    (
+                                        <>
+                                            <svg onClick={() => setShowPassword(true)} className="absolute flex right-10 bottom-28 cursor-pointer w-8 h-8 hover:bg-gray-400 rounded-full p-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M3.53 2.47a.75.75 0 00-1.06 1.06l18 18a.75.75 0 101.06-1.06l-18-18zM22.676 12.553a11.249 11.249 0 01-2.631 4.31l-3.099-3.099a5.25 5.25 0 00-6.71-6.71L7.759 4.577a11.217 11.217 0 014.242-.827c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113z" />
+                                                <path d="M15.75 12c0 .18-.013.357-.037.53l-4.244-4.243A3.75 3.75 0 0115.75 12zM12.53 15.713l-4.243-4.244a3.75 3.75 0 004.243 4.243z" />
+                                                <path d="M6.75 12c0-.619.107-1.213.304-1.764l-3.1-3.1a11.25 11.25 0 00-2.63 4.31c-.12.362-.12.752 0 1.114 1.489 4.467 5.704 7.69 10.675 7.69 1.5 0 2.933-.294 4.242-.827l-2.477-2.477A5.25 5.25 0 016.75 12z" />
+                                            </svg>
+                                        </>
+                                    )}
+                                </div>
                                 <div className="w-full text-center">
                                     {submitButton ? (
                                             <>
