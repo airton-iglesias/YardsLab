@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import "./components/styles.css";
+import "../components/styles.css";
 
 
 
