@@ -1,5 +1,4 @@
 import Link from "next/link";
-import CheckCookies from "./components/checkCookies";
 
 export default function NotFound() {
     return (
@@ -16,7 +15,6 @@ export default function NotFound() {
                         <img className="w-120 h-120 mx-auto" src="/images/teamwork.png" loading="lazy"/>
                     </div>
                 </div>
-                <CheckCookies/>
             </body>
         </html>
     );
